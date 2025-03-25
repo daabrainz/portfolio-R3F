@@ -5,30 +5,37 @@ Command: npx gltfjsx@6.5.3 public/models/model.glb
 
 import React, { useEffect, useRef } from "react";
 import { useFrame, useGraph } from "@react-three/fiber";
-import { useFBX, useGLTF, useAnimations} from "@react-three/drei";
+import { useFBX, useGLTF, useAnimations } from "@react-three/drei";
 import { SkeletonUtils } from "three-stdlib";
 import { useControls } from "leva";
 import * as THREE from "three";
 
 export function Avatar(props) {
-  const {animation} = props;
+  const { animation } = props;
   const { headFollow, cursorFollow, wireframe } = useControls({
     headFollow: false,
     cursorFollow: false,
     wireframe: false,
   });
-    const group = useRef();
+  const group = useRef();
   const { scene } = useGLTF("/models/model.glb");
 
   const { animations: typingAnimation } = useFBX("/animations/Typing.fbx");
-  const { animations: standingAnimation } = useFBX("/animations/Standing Idle.fbx");
-  const { animations: fallingAnimation } = useFBX("/animations/Falling Idle.fbx");
+  const { animations: standingAnimation } = useFBX(
+    "/animations/Standing.fbx"
+  );
+  const { animations: fallingAnimation } = useFBX(
+    "/animations/Falling.fbx"
+  );
 
-typingAnimation[0].name = "Typing";
-standingAnimation[0].name = "Standing";
-fallingAnimation[0].name = "Falling";
+  typingAnimation[0].name = "Typing";
+  standingAnimation[0].name = "Standing";
+  fallingAnimation[0].name = "Falling";
 
-  const { actions } = useAnimations([typingAnimation[0], standingAnimation[0], fallingAnimation[0]], group);
+  const { actions } = useAnimations(
+    [typingAnimation[0], standingAnimation[0], fallingAnimation[0]],
+    group
+  );
 
   useFrame((state) => {
     if (headFollow) {
@@ -41,16 +48,21 @@ fallingAnimation[0].name = "Falling";
   });
 
   useEffect(() => {
-    if (actions[animation]) {
-      actions[animation].reset().fadeIn(0.2).play();
-    }
-    return () => {
-      if (actions[animation]) {
-        actions[animation].fadeOut(0.2);
-      }
-    };
-  }, [animation, actions]);
+    if (!actions || !actions[animation]) return;
+  
+    const nextAction = actions[animation];
+    const currentAction = Object.values(actions).find((action) => action.isRunning());
+  
+    if (currentAction && currentAction !== nextAction) {
 
+      currentAction.crossFadeTo(nextAction, 1.5, true); 
+    }
+  
+    nextAction.enabled = true; 
+    nextAction.setEffectiveWeight(1); 
+    nextAction.play(); 
+  }, [animation, actions]);
+  
   useEffect(() => {
     Object.values(materials).forEach((material) => {
       material.wireframe = wireframe;
@@ -60,73 +72,82 @@ fallingAnimation[0].name = "Falling";
   const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene]);
   const { nodes, materials } = useGraph(clone);
   return (
-    <group {...props} ref = {group} dispose={null}>
-    <group rotation-x={-Math.PI / 2}>
-      <primitive object={nodes.Hips} />
-      <skinnedMesh
-        geometry={nodes.Body_Mesh.geometry}
-        material={materials.Body}
-        skeleton={nodes.Body_Mesh.skeleton} 
-      />
-      <skinnedMesh
-        geometry={nodes.avaturn_look_0.geometry}
-        material={materials.avaturn_look_0_material}
-        skeleton={nodes.avaturn_look_0.skeleton}
-      />
-      <skinnedMesh
-        geometry={nodes.avaturn_shoes_0.geometry}
-        material={materials.avaturn_shoes_0_material}
-        skeleton={nodes.avaturn_shoes_0.skeleton}
-      />
-      <skinnedMesh
-        name="Eye_Mesh"
-        geometry={nodes.Eye_Mesh.geometry}
-        material={materials.Eyes}
-        skeleton={nodes.Eye_Mesh.skeleton}
-        morphTargetDictionary={nodes.Eye_Mesh.morphTargetDictionary}
-        morphTargetInfluences={nodes.Eye_Mesh.morphTargetInfluences}
-      />
-      <skinnedMesh
-        name="EyeAO_Mesh"
-        geometry={nodes.EyeAO_Mesh.geometry}
-        material={materials.EyeAO}
-        skeleton={nodes.EyeAO_Mesh.skeleton}
-        morphTargetDictionary={nodes.EyeAO_Mesh.morphTargetDictionary}
-        morphTargetInfluences={nodes.EyeAO_Mesh.morphTargetInfluences}
-      />
-      <skinnedMesh
-        name="Eyelash_Mesh"
-        geometry={nodes.Eyelash_Mesh.geometry}
-        material={materials.Eyelash}
-        skeleton={nodes.Eyelash_Mesh.skeleton}
-        morphTargetDictionary={nodes.Eyelash_Mesh.morphTargetDictionary}
-        morphTargetInfluences={nodes.Eyelash_Mesh.morphTargetInfluences}
-      />
-      <skinnedMesh
-        name="Head_Mesh"
-        geometry={nodes.Head_Mesh.geometry}
-        material={materials.Head}
-        skeleton={nodes.Head_Mesh.skeleton}
-        morphTargetDictionary={nodes.Head_Mesh.morphTargetDictionary}
-        morphTargetInfluences={nodes.Head_Mesh.morphTargetInfluences}
-      />
-      <skinnedMesh
-        name="Teeth_Mesh"
-        geometry={nodes.Teeth_Mesh.geometry}
-        material={materials.Teeth}
-        skeleton={nodes.Teeth_Mesh.skeleton}
-        morphTargetDictionary={nodes.Teeth_Mesh.morphTargetDictionary}
-        morphTargetInfluences={nodes.Teeth_Mesh.morphTargetInfluences}
-      />
-      <skinnedMesh
-        name="Tongue_Mesh"
-        geometry={nodes.Tongue_Mesh.geometry}
-        material={materials.Teeth}
-        skeleton={nodes.Tongue_Mesh.skeleton}
-        morphTargetDictionary={nodes.Tongue_Mesh.morphTargetDictionary}
-        morphTargetInfluences={nodes.Tongue_Mesh.morphTargetInfluences}
-      />
-    </group>
+    <group {...props} ref={group} dispose={null}>
+      <group rotation-x={-Math.PI / 2}>
+        <primitive object={nodes.Hips} />
+        <skinnedMesh
+          frustumCulled={false}
+          geometry={nodes.Body_Mesh.geometry}
+          material={materials.Body}
+          skeleton={nodes.Body_Mesh.skeleton}
+        />
+        <skinnedMesh
+          frustumCulled={false}
+          geometry={nodes.avaturn_look_0.geometry}
+          material={materials.avaturn_look_0_material}
+          skeleton={nodes.avaturn_look_0.skeleton}
+        />
+        <skinnedMesh
+          frustumCulled={false}
+          geometry={nodes.avaturn_shoes_0.geometry}
+          material={materials.avaturn_shoes_0_material}
+          skeleton={nodes.avaturn_shoes_0.skeleton}
+        />
+        <skinnedMesh
+          frustumCulled={false}
+          name="Eye_Mesh"
+          geometry={nodes.Eye_Mesh.geometry}
+          material={materials.Eyes}
+          skeleton={nodes.Eye_Mesh.skeleton}
+          morphTargetDictionary={nodes.Eye_Mesh.morphTargetDictionary}
+          morphTargetInfluences={nodes.Eye_Mesh.morphTargetInfluences}
+        />
+        <skinnedMesh
+          frustumCulled={false}
+          name="EyeAO_Mesh"
+          geometry={nodes.EyeAO_Mesh.geometry}
+          material={materials.EyeAO}
+          skeleton={nodes.EyeAO_Mesh.skeleton}
+          morphTargetDictionary={nodes.EyeAO_Mesh.morphTargetDictionary}
+          morphTargetInfluences={nodes.EyeAO_Mesh.morphTargetInfluences}
+        />
+        <skinnedMesh
+          frustumCulled={false}
+          name="Eyelash_Mesh"
+          geometry={nodes.Eyelash_Mesh.geometry}
+          material={materials.Eyelash}
+          skeleton={nodes.Eyelash_Mesh.skeleton}
+          morphTargetDictionary={nodes.Eyelash_Mesh.morphTargetDictionary}
+          morphTargetInfluences={nodes.Eyelash_Mesh.morphTargetInfluences}
+        />
+        <skinnedMesh
+          frustumCulled={false}
+          name="Head_Mesh"
+          geometry={nodes.Head_Mesh.geometry}
+          material={materials.Head}
+          skeleton={nodes.Head_Mesh.skeleton}
+          morphTargetDictionary={nodes.Head_Mesh.morphTargetDictionary}
+          morphTargetInfluences={nodes.Head_Mesh.morphTargetInfluences}
+        />
+        <skinnedMesh
+          frustumCulled={false}
+          name="Teeth_Mesh"
+          geometry={nodes.Teeth_Mesh.geometry}
+          material={materials.Teeth}
+          skeleton={nodes.Teeth_Mesh.skeleton}
+          morphTargetDictionary={nodes.Teeth_Mesh.morphTargetDictionary}
+          morphTargetInfluences={nodes.Teeth_Mesh.morphTargetInfluences}
+        />
+        <skinnedMesh
+          frustumCulled={false}
+          name="Tongue_Mesh"
+          geometry={nodes.Tongue_Mesh.geometry}
+          material={materials.Teeth}
+          skeleton={nodes.Tongue_Mesh.skeleton}
+          morphTargetDictionary={nodes.Tongue_Mesh.morphTargetDictionary}
+          morphTargetInfluences={nodes.Tongue_Mesh.morphTargetInfluences}
+        />
+      </group>
     </group>
   );
 }

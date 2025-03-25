@@ -87,32 +87,28 @@ const AboutSection = () => {
 
 const skills = [
   {
-    title: "ThreeJS / React Three Fiber",
-    level: 30,
+    title: "HTML, CSS",
+    level: 70,
   },
   {
     title: "React",
     level: 30,
   },
   {
-    title: "HTML, CSS",
-    level: 70,
-  },
-  {
-    title: "Nodejs",
+    title: "ThreeJS / React Three Fiber",
     level: 40,
   },
   {
     title: "3D Modelling",
-    level: 20,
+    level: 50,
   },
   {
     title: "Javascript",
-    level: 40,
+    level: 35,
   },
   {
     title: "Java",
-    level: 60,
+    level: 40,
   },
 ];
 
@@ -123,7 +119,7 @@ const languages = [
   },
   {
     title: "🇺🇸 English",
-    level: 70,
+    level: 65,
   },
 ];
 
@@ -151,7 +147,7 @@ const SkillSection = () => {
               >
                 {skills.title}
               </motion.h3>
-              <div className="h-2 w-full bg-gray-200 rounded-full mt-2">
+              <div className="h-2 w-full bg-gray-300 rounded-full mt-2">
                 <motion.div
                   className="h-full bg-indigo-500 rounded-full"
                   style={{ width: `${skills.level}%` }}
@@ -175,7 +171,7 @@ const SkillSection = () => {
           ))}
         </div>
         <div>
-          <h2 className="text-5xl font-bold mt-10">Languages</h2>
+          <h2 className="text-5xl font-bold mt-10">Sprachen</h2>
           <div className="mt-8 space-y-4">
             {languages.map((lng, index) => (
               <div className="w-64" key={index}>
@@ -195,7 +191,7 @@ const SkillSection = () => {
                 >
                   {lng.title}
                 </motion.h3>
-                <div className="h-2 w-full bg-gray-200 rounded-full mt-2">
+                <div className="h-2 w-full bg-gray-300 rounded-full mt-2">
                   <motion.div
                     className="h-full bg-indigo-500 rounded-full"
                     style={{ width: `${lng.level}%` }}

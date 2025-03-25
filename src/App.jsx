@@ -7,6 +7,7 @@ import { ScrollManager } from "./components/ScrollManager";
 import { Menu } from "./components/Menu";
 import { MotionConfig } from "framer-motion";
 import { Leva } from "leva";
+import { framerMotionConfig } from "./config";
 
 
 function App() {
@@ -20,12 +21,9 @@ function App() {
   return (
     <>
     <MotionConfig transition={{ 
-      type: "spring",
-      mass: 1,
-      stiffness: 500,
-      damping: 100,
+      ...framerMotionConfig,
     }}>
-      <Canvas shadows camera={{ position: [-2, 1, 3], fov: 42}}>
+      <Canvas shadows camera={{ position: [-2, 1, 5], fov: 42}}>
         <color attach="background" args={["#e6e7ff"]} />
         <ScrollControls pages={4} damping={0.1}>
           <ScrollManager section={section} onSectionChange={setSection} />
