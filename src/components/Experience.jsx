@@ -151,6 +151,7 @@ export const Experience = (props) => {
           x: 0,
         }}
       >
+        {/* Geometrische Formen */}
         <directionalLight position={[0, 10, 5]} intensity={0.5} />
         <Float>
           <mesh position={[1, -3, -5]} scale={[0.5, 0.5, 0.5]}>

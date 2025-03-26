@@ -73,7 +73,7 @@ const AboutSection = (props) => {
       </motion.p>
       <motion.button
         onClick={() => setSection(3)}
-        className={`bg-indigo-600 text-white py-4 px-8 rounded-lg font-bold text-lg mt-4 md:mt-16`}
+        className={`bg-indigo-600 text-white py-4 px-8 rounded-lg font-bold text-lg mt-4 md:mt-16 hover:scale-110 transition-transform`}
         initial={{
           opacity: 0,
           y: 25,
@@ -266,16 +266,16 @@ const ContactSection = () => {
   return (
     <Section>
       <h2 className="text-3xl md:text-5xl font-bold">Kontaktiere mich</h2>
-      <div className="mt-8 p-8 rounded-md bg-white bg-opacity-50 w-96 mx-w-full">
-        <form>
-          <label for="name" className="font-medium text-gray-900 block mb-1">
+      <div id="contact-form" className="mt-8 p-8 rounded-md bg-white bg-opacity-50 w-96 mx-w-full">
+        <form className="w-full">
+          <label for="name" className="font-medium text-gray-900 block mb-1 border-none">
             Name
           </label>
           <input
             type="text"
             name="name"
             id="name"
-            className="block w-full rounded-md border-0 text gray-900 shadow-sm ring-1"
+            className="bg-gray-200 block w-full rounded-md text gray-900 p-2 ring-0"
           />
           <label
             for="email"
@@ -287,7 +287,7 @@ const ContactSection = () => {
             type="email"
             name="email"
             id="email"
-            className="block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1"
+            className="bg-gray-200 block w-full rounded-md border-0 text-gray-900 p-2"
           />
           <label
             for="email"
@@ -298,9 +298,9 @@ const ContactSection = () => {
           <textarea
             name="message"
             id="message"
-            className="h-32 block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1"
+            className="bg-gray-200 h-32 block w-full rounded-md border-none text-gray-900 p-2 resize-none"
           />
-          <button className="bg-indigo-600 text-white py-4 px-8 rounded-lg font-bold text-lg mt-8 align-items-center">
+          <button className="bg-indigo-600 text-white py-4 px-8 rounded-lg font-bold text-lg mt-8 mx-auto block hover:scale-110 transition-transform">
             Senden
           </button>
         </form>
