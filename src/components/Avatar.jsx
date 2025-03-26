@@ -11,22 +11,20 @@ import { useControls } from "leva";
 import * as THREE from "three";
 
 export function Avatar(props) {
+  
   const { animation, wireframe } = props;
   const { headFollow, cursorFollow} = useControls({
     headFollow: false,
     cursorFollow: false,
     wireframe: false,
   });
+
   const group = useRef();
   const { scene } = useGLTF("/models/model.glb");
 
   const { animations: typingAnimation } = useFBX("/animations/Typing.fbx");
-  const { animations: standingAnimation } = useFBX(
-    "/animations/Standing.fbx"
-  );
-  const { animations: fallingAnimation } = useFBX(
-    "/animations/Falling.fbx"
-  );
+  const { animations: standingAnimation } = useFBX("/animations/Standing.fbx");
+  const { animations: fallingAnimation } = useFBX("/animations/Falling.fbx");
 
   typingAnimation[0].name = "Typing";
   standingAnimation[0].name = "Standing";

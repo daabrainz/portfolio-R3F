@@ -49,13 +49,13 @@ const AboutSection = (props) => {
 
   return (
     <Section mobileTop>
-      <h1 className="text-4xl md:text-6xl font-extrabold leading-snug mt-8 md:mt-0">
-        Hi, ich bin
+      <h1 className=" text-white text-4xl md:text-6xl font-extrabold leading-snug mt-8 md:mt-0">
+        Hi, i am
         <br />
-        <span className="bg-white px-1 italic">Samuel Feindt</span>
+        <span className="bg-white text-black px-2 italic">Samuel Feindt</span>
       </h1>
       <motion.p
-        className="text-lg text-gray-600 mt-4"
+        className="text-lg text-gray-100 mt-4"
         initial={{
           opacity: 0,
           y: 25,
@@ -69,7 +69,7 @@ const AboutSection = (props) => {
           delay: 1.5,
         }}
       >
-        angehender 3D-Artist <br/>& Spieleentwickler.
+        aspiring UI/UX-Designer,  Game-Developer <br/>& 3D-Enthusiast.
       </motion.p>
       <motion.button
         onClick={() => setSection(3)}
@@ -87,7 +87,7 @@ const AboutSection = (props) => {
           delay: 2,
         }}
       >
-        Nachricht senden
+        Contact me
       </motion.button>
     </Section>
   );
@@ -104,7 +104,7 @@ const skills = [
   },
   {
     title: "ThreeJS / React Three Fiber",
-    level: 40,
+    level: 20,
   },
   {
     title: "3D Modelling",
@@ -112,22 +112,22 @@ const skills = [
   },
   {
     title: "Javascript",
-    level: 35,
+    level: 30,
   },
   {
     title: "Java",
-    level: 40,
+    level: 35,
   },
 ];
 
 const languages = [
   {
-    title: "🇩🇪 Deutsch",
+    title: "🇩🇪 German",
     level: 100,
   },
   {
-    title: "🇺🇸 Englisch",
-    level: 65,
+    title: "🇺🇸 English",
+    level: 70,
   },
 ];
 
@@ -179,7 +179,7 @@ const SkillSection = () => {
           ))}
         </div>
         <div>
-          <h2 className="text-3xl md:text-5xl font-bold mt-10 text-white">Sprachen</h2>
+          <h2 className="text-3xl md:text-5xl font-bold mt-10 text-white">Languages</h2>
           <div className="mt-8 space-y-4">
             {languages.map((lng, index) => (
               <div className="w-full md:w-64" key={index}>
@@ -244,18 +244,18 @@ const ProjectsSection = () => {
     <Section>
       <div className="flex w-full h-full gap-8 items-end justify-center mb-10">
         <button
-          className="hover:text-indigo-600 transition-color mt-8"
+          className="text-white hover:scale-120 mb-1 transition-transform text-4xl font-bold transition-color"
           onClick={previousProject}
         >
-          ⬅️ Vorheriges
+          ⬅️
         </button>
         
-        <h2 className="text-3xl md:text-5xl font-bold">Projekte</h2>
+        <h2 className="text-3xl md:text-5xl font-bold">Projects</h2>
         <button
-          className="hover:text-indigo-600 transition-color"
+          className="text-white hover:scale-120 mb-1 transition-transform font-bold text-4xl transition-color"
           onClick={nextProject}
         >
-          Nächstes ➡️
+          ➡️
         </button>
       </div>
     </Section>
@@ -265,10 +265,12 @@ const ProjectsSection = () => {
 const ContactSection = () => {
   return (
     <Section>
-      <h2 className="text-3xl md:text-5xl font-bold">Kontaktiere mich</h2>
+      <div>
+      <h2 className="text-white text-3xl md:text-5xl font-bold text-center">Contact me</h2>
+      </div>
       <div id="contact-form" className="mt-8 p-8 rounded-md bg-white bg-opacity-50 w-96 mx-w-full">
         <form className="w-full">
-          <label for="name" className="font-medium text-gray-900 block mb-1 border-none">
+          <label for="name" className="font-medium text-gray-900 block mb- border-none">
             Name
           </label>
           <input
@@ -293,7 +295,7 @@ const ContactSection = () => {
             for="email"
             className="font-medium text-gray-900 block mb-1 mt-8"
           >
-            Nachricht
+            Message
           </label>
           <textarea
             name="message"
@@ -301,7 +303,7 @@ const ContactSection = () => {
             className="bg-gray-200 h-32 block w-full rounded-md border-none text-gray-900 p-2 resize-none"
           />
           <button className="bg-indigo-600 text-white py-4 px-8 rounded-lg font-bold text-lg mt-8 mx-auto block hover:scale-110 transition-transform">
-            Senden
+            Submit
           </button>
         </form>
       </div>
