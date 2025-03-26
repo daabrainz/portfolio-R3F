@@ -8,6 +8,7 @@ import { Menu } from "./components/Menu";
 import { MotionConfig } from "framer-motion";
 import { Leva } from "leva";
 import { framerMotionConfig } from "./config";
+import { Provider } from "jotai";
 
 
 function App() {
@@ -31,7 +32,7 @@ function App() {
           <Experience section={section} menuOpened={menuOpened} />
           </Scroll>
           <Scroll html>
-            <Interface />
+            <Interface setSection={setSection}/>
           </Scroll>
         </ScrollControls>
       </Canvas>

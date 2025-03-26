@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useGLTF, useTexture } from "@react-three/drei";
+import { useGLTF, useTexture, useVideoTexture } from "@react-three/drei";
 import { motion } from "framer-motion-3d";
 
 import * as THREE from "three";
@@ -11,6 +11,8 @@ export function Office(props) {
   const { section } = props;
   const { nodes, materials } = useGLTF("/models/office.gltf");
   const texture = useTexture("/textures/Baked.jpg");
+  const textureVsCode = useVideoTexture("textures/vscode.mp4");
+
   texture.flipY = false;
   texture.encoding = THREE.sRGBEncoding;
 
@@ -30,8 +32,12 @@ export function Office(props) {
   const glassTextureOpacity = useMotionValue(0);
 
   useEffect(() => {
-    animate(textureOpacity, section === 0 ? 1 : 0);
-    animate(glassTextureOpacity, section === 0 ? 0.42 : 0);
+    animate(textureOpacity, section === 0 ? 1 : 0, {
+      duration: 0.8,
+    });
+    animate(glassTextureOpacity, section === 0 ? 0.42 : 0, {
+      duration: 0.8,
+    });
   }, [section]);
 
   useFrame(() => {
@@ -41,6 +47,13 @@ export function Office(props) {
 
   return (
     <group {...props} dispose={null}>
+      <mesh
+        name="Screen"
+        geometry={nodes.Screen.geometry}
+        position-x={-0.0001}
+        >
+        <meshBasicMaterial map={textureVsCode} toneMapped={false} />
+        </mesh>
       <mesh
         name="Fenster"
         geometry={nodes.Fenster.geometry}
@@ -62,100 +75,100 @@ export function Office(props) {
         material={textureMaterial}
       />
       <motion.mesh
-            scale={[0, 0, 0]}
-            animate={{
-              scale: section === 0 ? 1 : 0.5,
-            }}
+        scale={[0, 0, 0]}
+        animate={{
+          scale: section === 0 ? 1 : 0.5,
+        }}
         name="Bonsai"
         geometry={nodes.Bonsai.geometry}
         material={textureMaterial}
       />
       <motion.mesh
-            scale={[0, 0, 0]}
-            animate={{
-              scale: section === 0 ? 1 : 0.5,
-            }}
+        scale={[0, 0, 0]}
+        animate={{
+          scale: section === 0 ? 1 : 0.5,
+        }}
         name="Guitar"
         geometry={nodes.Guitar.geometry}
         material={textureMaterial}
       />
       <motion.mesh
-            scale={[0, 0, 0]}
-            animate={{
-              scale: section === 0 ? 1 : 0.5,
-            }}
+        scale={[0, 0, 0]}
+        animate={{
+          scale: section === 0 ? 1 : 0.5,
+        }}
         name="iMac"
         geometry={nodes.iMac.geometry}
         material={textureMaterial}
       />
       <motion.mesh
-            scale={[0, 0, 0]}
-            animate={{
-              scale: section === 0 ? 1 : 0.5,
-            }}
+        scale={[0, 0, 0]}
+        animate={{
+          scale: section === 0 ? 1 : 0.5,
+        }}
         name="Maus"
         geometry={nodes.Maus.geometry}
         material={textureMaterial}
       />
       <motion.mesh
-            scale={[0, 0, 0]}
-            animate={{
-              scale: section === 0 ? 1 : 0.5,
-            }}
+        scale={[0, 0, 0]}
+        animate={{
+          scale: section === 0 ? 1 : 0.5,
+        }}
         name="Schrank"
         geometry={nodes.Schrank.geometry}
         material={textureMaterial}
       />
       <motion.mesh
-            scale={[0, 0, 0]}
-            animate={{
-              scale: section === 0 ? 1 : 0.5,
-            }}
+        scale={[0, 0, 0]}
+        animate={{
+          scale: section === 0 ? 1 : 0.5,
+        }}
         name="Stehlampe"
         geometry={nodes.Stehlampe.geometry}
         material={textureMaterial}
       />
       <motion.mesh
-            scale={[0, 0, 0]}
-            animate={{
-              scale: section === 0 ? 1 : 0.5,
-            }}
+        scale={[0, 0, 0]}
+        animate={{
+          scale: section === 0 ? 1 : 0.5,
+        }}
         name="Stuhl"
         geometry={nodes.Stuhl.geometry}
         material={textureMaterial}
       />
       <motion.mesh
-            scale={[0, 0, 0]}
-            animate={{
-              scale: section === 0 ? 1 : 0.5,
-            }}
+        scale={[0, 0, 0]}
+        animate={{
+          scale: section === 0 ? 1 : 0.5,
+        }}
         name="Tasse"
         geometry={nodes.Tasse.geometry}
         material={textureMaterial}
       />
       <motion.mesh
-            scale={[0, 0, 0]}
-            animate={{
-              scale: section === 0 ? 1 : 0.5,
-            }}
+        scale={[0, 0, 0]}
+        animate={{
+          scale: section === 0 ? 1 : 0.5,
+        }}
         name="Tastatur"
         geometry={nodes.Tastatur.geometry}
         material={textureMaterial}
       />
       <motion.mesh
-            scale={[0, 0, 0]}
-            animate={{
-              scale: section === 0 ? 1 : 0.5,
-            }}
+        scale={[0, 0, 0]}
+        animate={{
+          scale: section === 0 ? 1 : 0.5,
+        }}
         name="Teppich"
         geometry={nodes.Teppich.geometry}
         material={textureMaterial}
       />
       <motion.mesh
-            scale={[0, 0, 0]}
-            animate={{
-              scale: section === 0 ? 1 : 0.5,
-            }}
+        scale={[0, 0, 0]}
+        animate={{
+          scale: section === 0 ? 1 : 0.5,
+        }}
         name="Tisch"
         geometry={nodes.Tisch.geometry}
         material={textureMaterial}
