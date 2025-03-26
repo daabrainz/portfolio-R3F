@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import { useAtom } from "jotai";
 import { currentProjectAtom } from "./Projects";
 import { projects } from "./Projects";
+import {Suspense, useState} from "react";
+
 
 const Section = (props) => {
   const { children, mobileTop } = props;
@@ -71,20 +73,21 @@ const AboutSection = (props) => {
       >
         aspiring UI/UX-Designer,  Game-Developer <br/>& 3D-Enthusiast.
       </motion.p>
+
       <motion.button
         onClick={() => setSection(3)}
         className={`bg-indigo-600 text-white py-4 px-8 rounded-lg font-bold text-lg mt-4 md:mt-16 hover:scale-110 transition-transform`}
         initial={{
           opacity: 0,
-          y: 25,
+          y: 20,
         }}
         whileInView={{
           opacity: 1,
           y: 0,
         }}
         transition={{
-          duration: 1,
-          delay: 2,
+          duration: 0.5,
+          delay: 1.8,
         }}
       >
         Contact me
@@ -302,7 +305,7 @@ const ContactSection = () => {
             id="message"
             className="bg-gray-200 h-32 block w-full rounded-md border-none text-gray-900 p-2 resize-none"
           />
-          <button className="bg-indigo-600 text-white py-4 px-8 rounded-lg font-bold text-lg mt-8 mx-auto block hover:scale-110 transition-transform">
+          <button className="bg-indigo-600 text-white py-4 px-8 rounded-lg font-bold text-lg mt-8 hover:scale-110 transition-transform">
             Submit
           </button>
         </form>

@@ -3,11 +3,15 @@ import {
   MeshWobbleMaterial,
   Float,
   useScroll,
+  OrbitControls,
 } from "@react-three/drei";
 import { Office } from "./Office";
 import { motion } from "framer-motion-3d";
 import { Avatar } from "./Avatar";
 import { Projects } from "./Projects";
+import * as THREE from "three";
+
+
 import { useFrame, useThree } from "@react-three/fiber";
 import { animate, useMotionValue } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
@@ -63,35 +67,36 @@ export const Experience = (props) => {
     // characterContainerAboutRef.current.getWorldPosition(position);
     // console.log([position.x, position.y, position.z]);
 
-    // const quaternion = new THREE.Quaternion();
-    // characterContainerAboutRef.current.getWorldQuaternion(quaternion);
-    // const euler = new THREE.Euler();
-    // euler.setFromQuaternion(quaternion, "XYZ");
+    const quaternion = new THREE.Quaternion();
+    characterContainerAboutRef.current.getWorldQuaternion(quaternion);
+    const euler = new THREE.Euler();
+    euler.setFromQuaternion(quaternion, "XYZ");
 
-    // console.log([euler.x, euler.y, euler.z]);
+    console.log([euler.x, euler.y, euler.z]);
   });
 
   return (
     <>
       <Background />
+
       <motion.group
         position={[
-          0.22790000000000005, 0.036300000000000006, 1.2593999999999999,
+          0.2208597124428327, 0.054, 2.29733495918678 
         ]}
-        rotation={[-0, 1.152, -0]}
+        rotation={[-0, 1.3519999999999992, -0]}
         animate={"" + section}
         transition={{
           duration: 0.6,
         }}
         variants={{
           0: {
-            scaleX: 0.38,
-            scaleY: 0.38,
-            scaleZ: 0.38,
+            scaleX: 0.353,
+            scaleY: 0.353,
+            scaleZ: 0.353,
           },
           1: {
-            scale: 1.5,
-            y: -viewport.height - 1.2,
+            scale: 1.8,
+            y: -viewport.height - 1.7,
             x: 0.5,
             z: 0,
             rotateX: 0,
@@ -100,7 +105,7 @@ export const Experience = (props) => {
           },
           2: {
             scale: 0.8,
-            x: -1.2,
+            x: -1,
             y: -viewport.height - 5.5,
             z: 0,
             rotateX: 0,
@@ -125,8 +130,8 @@ export const Experience = (props) => {
       <mesh>
         <ambientLight intensity={1} />
         <motion.group
-          position={[-0.2, 0, 1.2]}
-          rotation={[0, 0, 0]}
+          position={[-0.2, 0, 2.3]}
+          rotation={[0, 0.2, 0]}
           scale={1}
           animate={{
             y: section === 0 ? 0 : -1,
@@ -136,9 +141,10 @@ export const Experience = (props) => {
           <group
             ref={characterContainerAboutRef}
             name="AvatarSpot"
-            position={[0.389, 0.033, 0.054]}
-            rotation={[0, 1.152, 0]}
-          ></group>
+            position={[0.413, 0.054, 0.081]} rotation={[0, 1.152, 0]} scale={0.353}
+          >
+            {/* <Avatar animation={characterAnimation} wireframe={section === 1} /> */}
+          </group>
         </motion.group>
       </mesh>
 
@@ -154,37 +160,37 @@ export const Experience = (props) => {
         {/* Geometrische Formen */}
         <directionalLight position={[0, 10, 5]} intensity={0.5} />
         <Float>
-          <mesh position={[1, -3, -5]} scale={[0.5, 0.5, 0.5]}>
+          <mesh position={[3, -3, -5]} scale={[0.5, 0.5, 0.5]}>
             <sphereGeometry />
             <MeshDistortMaterial
               opacity={0.8}
               transperent
               distort={0.4}
-              speed={4}
+              speed={5}
               color={"red"}
             />
           </mesh>
         </Float>
         <Float>
-          <mesh position={[4, -6, -18]} scale={[3, 3, 3]}>
+          <mesh position={[-6, 1, -18]} scale={[3, 3, 3]}>
             <sphereGeometry />
             <MeshDistortMaterial
               opacity={0.8}
               transperent
               distort={1}
-              speed={5}
+              speed={4}
               color={"yellow"}
             />
           </mesh>
         </Float>
         <Float>
-          <mesh position={[-8, -5, -11]} scale={[1.4, 1.4, 1.4]}>
+          <mesh position={[-10, -4, -11]} scale={[1.4, 1.4, 1.4]}>
             <boxGeometry />
             <MeshWobbleMaterial
               opacity={0.8}
               transperent
-              factor={1}
-              speed={5}
+              factor={2}
+              speed={3}
               color={"lightgreen"}
             />
           </mesh>

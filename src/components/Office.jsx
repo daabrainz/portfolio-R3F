@@ -47,13 +47,9 @@ export function Office(props) {
 
   return (
     <group {...props} dispose={null}>
-      <mesh
-        name="Screen"
-        geometry={nodes.Screen.geometry}
-        position-x={-0.0001}
-        >
+      <mesh name="Screen" geometry={nodes.Screen.geometry} position-x={-0.0001}>
         <meshBasicMaterial map={textureVsCode} toneMapped={false} />
-        </mesh>
+      </mesh>
       <mesh
         name="Fenster"
         geometry={nodes.Fenster.geometry}
@@ -172,6 +168,16 @@ export function Office(props) {
         name="Tisch"
         geometry={nodes.Tisch.geometry}
         material={textureMaterial}
+      />
+      <motion.mesh
+        scale={[0, 0, 0]}
+        animate={{
+          scale: section === 0 ? 1 : 0.5,
+        }}
+        name="FiddleleafFigPottedPlant_mesh"
+        geometry={nodes.FiddleleafFigPottedPlant_mesh.geometry}
+        material={textureMaterial}
+        position={[0.59, 0, 0.688]}
       />
     </group>
   );

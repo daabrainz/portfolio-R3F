@@ -21,9 +21,15 @@ export const projects = [
   },
   {
     title: "Spring Boot App",
-    description: "Ein einfaches digitales Lern-Tagebuch für die Schule",
+    description: "A simple digital learning journal for students",
     image: "/projects/LearningJournal.jpeg",
     link: "https://cool-strudel-fdd610.netlify.app/",
+  },
+  {
+    title: "Snake Game",
+    description: "A basic 2D snake game",
+    image: "/projects/LearningJournal.jpeg",
+    link: "https://snake-2d-basic.netlify.app/",
   },
 ];
 
