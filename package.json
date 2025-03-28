@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@formspree/react": "^3.0.0",
     "@react-three/drei": "^10.0.3",
     "@react-three/fiber": "^9.0.4",
     "@tailwindcss/vite": "^4.0.15",

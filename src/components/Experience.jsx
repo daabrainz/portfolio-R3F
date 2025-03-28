@@ -14,7 +14,7 @@ import * as THREE from "three";
 
 import { useFrame, useThree } from "@react-three/fiber";
 import { animate, useMotionValue } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useImperativeHandle, useRef, useState } from "react";
 import { framerMotionConfig } from "../config";
 import { Background } from "./Background";
 
@@ -24,7 +24,8 @@ export const Experience = (props) => {
   const data = useScroll();
 
   const isMobile = window.innerWidth < 768;
-
+  const responsiveRatio = viewport.width / 12;
+  const officeScaleRatio = Math.max(0.8, Math.min(1 * responsiveRatio, 1));
 
   const [section, setSection] = useState();
 
@@ -32,6 +33,7 @@ export const Experience = (props) => {
   const cameraLookAtX = useMotionValue();
   const characterContainerAboutRef = useRef();
   const [characterAnimation, setCharacterAnimation] = useState("Typing");
+  const characterGroup = useRef();
 
   useEffect(() => {
     animate(cameraPositionX, menuOpened ? -2 : -2, {
@@ -64,15 +66,16 @@ export const Experience = (props) => {
     state.camera.lookAt(cameraLookAtX.get(), 0, 0);
 
     // const position = new THREE.Vector3();
-    // characterContainerAboutRef.current.getWorldPosition(position);
+    if ( section === 0 ) {
+      characterContainerAboutRef.current.getWorldPosition(characterGroup.current.position);
+    }
     // console.log([position.x, position.y, position.z]);
 
-    const quaternion = new THREE.Quaternion();
-    characterContainerAboutRef.current.getWorldQuaternion(quaternion);
-    const euler = new THREE.Euler();
-    euler.setFromQuaternion(quaternion, "XYZ");
-
-    console.log([euler.x, euler.y, euler.z]);
+    // const quaternion = new THREE.Quaternion();
+    // characterContainerAboutRef.current.getWorldQuaternion(quaternion);
+    // const euler = new THREE.Euler();
+    // euler.setFromQuaternion(quaternion, "XYZ");
+    // console.log([euler.x, euler.y, euler.z]);
   });
 
   return (
@@ -80,27 +83,29 @@ export const Experience = (props) => {
       <Background />
 
       <motion.group
+        ref={characterGroup}
         position={[
           0.2208597124428327, 0.054, 2.29733495918678 
         ]}
         rotation={[-0, 1.3519999999999992, -0]}
+        scale={[officeScaleRatio, officeScaleRatio, officeScaleRatio]}
         animate={"" + section}
         transition={{
           duration: 0.6,
         }}
         variants={{
           0: {
-            scaleX: 0.353,
-            scaleY: 0.353,
-            scaleZ: 0.353,
+            scaleX: officeScaleRatio * 0.353,
+            scaleY: officeScaleRatio * 0.353,
+            scaleZ: officeScaleRatio * 0.353,
           },
           1: {
-            scale: 1.8,
-            y: -viewport.height - 1.7,
-            x: 0.5,
+            scale: isMobile ? 2.1 : 1.8,
+            y: isMobile ? -viewport.height - 2 : -viewport.height - 1.6,
+            x: isMobile ? 0.6 : 0.9,
             z: 0,
             rotateX: 0,
-            rotateY: -0.5,
+            rotateY: isMobile ? -Math.PI / 2 : -0.5,
             rotateZ: 0,
           },
           2: {
@@ -114,7 +119,7 @@ export const Experience = (props) => {
           },
           3: {
             y: -viewport.height - 12.5,
-            x: 1,
+            x: isMobile ? 1.3 : 1,
             z: 0,
             rotateX: 0,
             rotateY: -Math.PI / 3,
@@ -130,11 +135,14 @@ export const Experience = (props) => {
       <mesh>
         <ambientLight intensity={1} />
         <motion.group
-          position={[-0.2, 0, 2.3]}
+          position={[isMobile ? -0.8 : -0.2 * officeScaleRatio , isMobile ? -viewport.height / 6 : 0 , 2.3]}
           rotation={[0, 0.2, 0]}
-          scale={1}
+          scale={[officeScaleRatio, officeScaleRatio, officeScaleRatio]} 
           animate={{
-            y: section === 0 ? 0 : -1,
+            y: isMobile ? -viewport.height / 6 : 0,
+          }}
+          transition={{
+            duration: 0.8,
           }}
         >
           <Office section={section} />
@@ -148,19 +156,20 @@ export const Experience = (props) => {
         </motion.group>
       </mesh>
 
+      {/* Geometrische Formen */}
       <motion.group
-        position={[0, 0, 1.2]}
+        position={[0, isMobile ? -viewport.height : -1 * officeScaleRatio, 1.2]}
         rotation={[0, -0.7, 0]}
         scale={1.0}
         animate={{
-          y: section === 1 ? -viewport.height / 2 : 0,
+          y: section === 1 ? -viewport.height / 2 : (isMobile ? -viewport.height : -1 * officeScaleRatio),
           x: 0,
+          z: section === 1 ? -8 : -12,
         }}
       >
-        {/* Geometrische Formen */}
         <directionalLight position={[0, 10, 5]} intensity={0.5} />
         <Float>
-          <mesh position={[3, -3, -5]} scale={[0.5, 0.5, 0.5]}>
+          <mesh position={[4, 0, -10]} scale={[1.2, 1.2, 1.2]}>
             <sphereGeometry />
             <MeshDistortMaterial
               opacity={0.8}
@@ -184,7 +193,7 @@ export const Experience = (props) => {
           </mesh>
         </Float>
         <Float>
-          <mesh position={[-10, -4, -11]} scale={[1.4, 1.4, 1.4]}>
+          <mesh position={[-2, -4, -11]} scale={[1.4, 1.4, 1.4]}>
             <boxGeometry />
             <MeshWobbleMaterial
               opacity={0.8}

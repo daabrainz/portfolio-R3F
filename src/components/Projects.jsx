@@ -65,7 +65,7 @@ const Project = (props) => {
         anchorX={"righ"}
         anchorY={"top"}
         fontSize={0.2}
-        position={[-1, -0.4, 0.1]}
+        position={[-0.9, -0.4, 0.1]}
       >
         {project.title.toUpperCase()}
       </Text>
@@ -88,7 +88,7 @@ export const Projects = ({section}) => {
 
     if (section !== 2) return null;
   return (
-    <group position-y={-viewport.height - 4} position-x={0.2} rotation-y={-Math.PI / 8}>
+    <group position-y={-viewport.height - 4} position-x={0} rotation-y={-Math.PI / 8}>
       {projects.map((project, index) => (
         <motion.group key={"project_" + index} position={[index * 2.5, -1.5, -5]}
         animate={{

@@ -5,7 +5,7 @@ Command: npx gltfjsx@6.5.3 public/models/office.gltf -K -k
 
 import React from 'react'
 import { useGraph } from '@react-three/fiber'
-import { useGLTF, useAnimations } from '@react-three/drei'
+import { useGLTF, useAnimations, useTexture } from '@react-three/drei'
 import { SkeletonUtils } from 'three-stdlib'
 
 export function Model(props) {
@@ -53,4 +53,5 @@ export function Model(props) {
   )
 }
 
-useGLTF.preload('/office.gltf')
+useGLTF.preload('/office.gltf');
+useTexture.preload("textures/Baked.jpg");

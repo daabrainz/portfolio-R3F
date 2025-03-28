@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { useAtom } from "jotai";
 import { currentProjectAtom } from "./Projects";
 import { projects } from "./Projects";
-import {Suspense, useState} from "react";
+import { useForm, ValidationError } from '@formspree/react';
 
 
 const Section = (props) => {
@@ -266,50 +266,69 @@ const ProjectsSection = () => {
 };
 
 const ContactSection = () => {
+
+  const [state, handleSubmit] = useForm("xyzedgre");
+  
   return (
     <Section>
-      <div>
-      <h2 className="text-white text-3xl md:text-5xl font-bold text-center">Contact me</h2>
-      </div>
-      <div id="contact-form" className="mt-8 p-8 rounded-md bg-white bg-opacity-50 w-96 mx-w-full">
-        <form className="w-full">
-          <label for="name" className="font-medium text-gray-900 block mb- border-none">
-            Name
-          </label>
-          <input
-            type="text"
-            name="name"
-            id="name"
-            className="bg-gray-200 block w-full rounded-md text gray-900 p-2 ring-0"
-          />
-          <label
-            for="email"
-            className="font-medium text-gray-900 block mb-1 mt-8"
-          >
-            E-Mail
-          </label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            className="bg-gray-200 block w-full rounded-md border-0 text-gray-900 p-2"
-          />
-          <label
-            for="email"
-            className="font-medium text-gray-900 block mb-1 mt-8"
-          >
-            Message
-          </label>
-          <textarea
-            name="message"
-            id="message"
-            className="bg-gray-200 h-32 block w-full rounded-md border-none text-gray-900 p-2 resize-none"
-          />
-          <button className="bg-indigo-600 text-white py-4 px-8 rounded-lg font-bold text-lg mt-8 hover:scale-110 transition-transform">
-            Submit
-          </button>
-        </form>
-      </div>
+
+      <h2 className="text-white text-3xl md:text-5xl font-bold">Contact me</h2>
+
+      <div id="contact-form" className="bg-white/50 mt-8 p-8 rounded-md w-96 max-w-full">
+          {state.succeeded ? (
+            <p className="text-center text-lg font-bold">
+              Thanks for your message! I will get back to you soon.
+            </p>
+          ) : (
+            <form onSubmit={handleSubmit}>
+            <label for="name" className="font-medium  text-gray-900 block border-none">
+              Name
+            </label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              className="bg-gray-100  block w-full rounded-md text gray-900 p-2"
+            />
+            <label
+              for="email"
+              className="font-medium text-gray-900 block mb-1 mt-8"
+            >
+              E-Mail
+            </label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              className="bg-gray-100 block w-full rounded-md border-0 text-gray-900 p-2"
+            />
+            <ValidationError 
+          prefix="Message" 
+          field="message"
+          errors={state.errors}
+        />
+            <label
+              for="email"
+              className="font-medium text-gray-900 block mb-1 mt-8"
+            >
+              Message
+            </label>
+            <textarea
+              name="message"
+              id="message"
+              className="bg-gray-100 h-32 block w-full rounded-md border-none text-gray-900 p-2 resize-none"
+            />
+            <ValidationError
+            className="mt-10 text-red-400" 
+          
+          errors={state.errors}
+        />
+            <button disabled={state.submitting} className="bg-indigo-600 text-white py-4 px-8 rounded-lg font-bold text-lg mt-8 hover:scale-110 transition-transform">
+              Submit
+            </button>
+          </form>   
+          )}
+</div>
     </Section>
   );
 };
