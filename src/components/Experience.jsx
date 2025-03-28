@@ -25,7 +25,7 @@ export const Experience = (props) => {
 
   const isMobile = window.innerWidth < 768;
   const responsiveRatio = viewport.width / 12;
-  const officeScaleRatio = Math.max(0.8, Math.min(1 * responsiveRatio, 1));
+  const officeScaleRatio = Math.max(0.5, Math.min(1.5 * responsiveRatio, 1.5));
 
   const [section, setSection] = useState();
 
@@ -95,9 +95,9 @@ export const Experience = (props) => {
         }}
         variants={{
           0: {
-            scaleX: officeScaleRatio * 0.353,
-            scaleY: officeScaleRatio * 0.353,
-            scaleZ: officeScaleRatio * 0.353,
+            scale: isMobile ? officeScaleRatio * 0.35 : officeScaleRatio * 0.353,
+            // scaleY: officeScaleRatio * 0.353,
+            // scaleZ: officeScaleRatio * 0.353,
           },
           1: {
             scale: isMobile ? 2.1 : 1.8,
@@ -135,11 +135,11 @@ export const Experience = (props) => {
       <mesh>
         <ambientLight intensity={1} />
         <motion.group
-          position={[isMobile ? -0.8 : -0.2 * officeScaleRatio , isMobile ? -viewport.height / 6 : 0 , 2.3]}
+          position={[isMobile ? -0.9 : -0.2 * officeScaleRatio , isMobile ? -viewport.height / 6 : 0 , 2.3]}
           rotation={[0, 0.2, 0]}
           scale={[officeScaleRatio, officeScaleRatio, officeScaleRatio]} 
           animate={{
-            y: isMobile ? -viewport.height / 6 : 0,
+            y: isMobile ? -viewport.height / 12 : 0,
           }}
           transition={{
             duration: 0.8,

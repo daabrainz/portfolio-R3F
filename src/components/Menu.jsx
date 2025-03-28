@@ -45,7 +45,7 @@ const MenuButton = (props) => {
     const { label, onClick } = props;
 
     return (
-        <button onClick={onClick} className="text-2xl font-bold cursor-pointer hover:text-indigo-600 transition-colors">{label}
+        <button onClick={onClick} className="text-2xl text-gray-900 font-bold cursor-pointer hover:text-indigo-600 transition-colors">{label}
         </button>
     );
 };

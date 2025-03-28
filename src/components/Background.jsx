@@ -7,7 +7,7 @@ import * as THREE from "three";
 export const Background = () => {
   const material = useRef();
   const color = useRef({
-    color: "#0D1B2A",
+    color: "#1b2837",
   });
   const data = useScroll();
 
@@ -23,9 +23,9 @@ export const Background = () => {
   useEffect(() => {
     color.current.color = "#0D1B2A"; // Setze die Startfarbe
     tl.current = gsap.timeline({ paused: true });
-    tl.current.to(color.current, { color: "#0D1B2A" });
+    tl.current.to(color.current, { color: "#1b2837" });
     tl.current.to(color.current, { color: "#E5E5E5" });
-    tl.current.to(color.current, { color: "#0D1B2A" });
+    tl.current.to(color.current, { color: "#1b2837" });
   }, []);
 
   return (

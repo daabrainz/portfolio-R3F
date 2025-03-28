@@ -3,6 +3,8 @@ import { useAtom } from "jotai";
 import { currentProjectAtom } from "./Projects";
 import { projects } from "./Projects";
 import { useForm, ValidationError } from '@formspree/react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 
 const Section = (props) => {
@@ -54,7 +56,7 @@ const AboutSection = (props) => {
       <h1 className=" text-white text-4xl md:text-6xl font-extrabold leading-snug mt-8 md:mt-0">
         Hi, i am
         <br />
-        <span className="bg-white text-black px-2 italic">Samuel Feindt</span>
+        <span className="bg-white text-gray-900 px-2 italic">Samuel Feindt</span>
       </h1>
       <motion.p
         className="text-lg text-gray-100 mt-4"
@@ -138,7 +140,7 @@ const SkillSection = () => {
   return (
     <Section>
       <motion.div whileInView={"visible"} className="w-full">
-        <h2 className="text-3xl md:text-5xl font-bold text-white">Skills</h2>
+        <h2 className="text-3xl md:text-5xl font-bold text-gray-100">Skills</h2>
         <div className="mt-8 space-y-4">
           {skills.map((skills, index) => (
             <div className="w-full md:w-64" key={index}>
@@ -159,7 +161,7 @@ const SkillSection = () => {
               >
                 {skills.title}
               </motion.h3>
-              <div className="h-2 w-full bg-gray-100 rounded-full mt-2">
+              <div className="h-2 w-full bg-gray-200 rounded-full mt-2">
                 <motion.div
                   className="h-full bg-indigo-500 rounded-full"
                   style={{ width: `${skills.level}%` }}
@@ -182,7 +184,7 @@ const SkillSection = () => {
           ))}
         </div>
         <div>
-          <h2 className="text-3xl md:text-5xl font-bold mt-10 text-white">Languages</h2>
+          <h2 className="text-3xl md:text-5xl font-bold mt-10 text-gray-100">Languages</h2>
           <div className="mt-8 space-y-4">
             {languages.map((lng, index) => (
               <div className="w-full md:w-64" key={index}>
@@ -203,7 +205,7 @@ const SkillSection = () => {
                 >
                   {lng.title}
                 </motion.h3>
-                <div className="h-2 w-full bg-gray-300 rounded-full mt-2">
+                <div className="h-2 w-full bg-gray-200 rounded-full mt-2">
                   <motion.div
                     className="h-full bg-indigo-500 rounded-full"
                     style={{ width: `${lng.level}%` }}
@@ -245,20 +247,20 @@ const ProjectsSection = () => {
 
   return (
     <Section>
-      <div className="flex w-full h-full gap-8 items-end justify-center mb-10">
+      <div className="flex w-full h-full gap-8 items-end justify-center mb-2">
         <button
-          className="text-white hover:scale-120 mb-1 transition-transform text-4xl font-bold transition-color"
+          className="text-gray-900 hover:scale-120 transition-transform text-3xl font-bold transition-color"
           onClick={previousProject}
         >
-          ⬅️
+          <FontAwesomeIcon icon={faArrowLeft} />
         </button>
         
         <h2 className="text-3xl md:text-5xl font-bold">Projects</h2>
         <button
-          className="text-white hover:scale-120 mb-1 transition-transform font-bold text-4xl transition-color"
+          className="text-gray-900 hover:scale-120 transition-transform font-bold text-3xl transition-color"
           onClick={nextProject}
         >
-          ➡️
+          <FontAwesomeIcon icon={faArrowRight} />
         </button>
       </div>
     </Section>
