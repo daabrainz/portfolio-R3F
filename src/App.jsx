@@ -12,6 +12,7 @@ import { Provider } from "jotai";
 import { LoadingScreen } from "./components/LoadingScreen";
 
 
+
 function App() {
   const [section, setSection] = useState(0);
   const [started, setStarted] = useState(false);
@@ -29,7 +30,7 @@ function App() {
     }}>
       <Canvas shadows camera={{ position: [-2, 1, 5], fov: 42}}>
         <color attach="background" args={["#e6e7ff"]} />
-        <ScrollControls pages={4} damping={0.1}>
+        <ScrollControls pages={6} damping={0.2}>
           <ScrollManager section={section} onSectionChange={setSection} />
           <Scroll>
             <Suspense>

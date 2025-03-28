@@ -11,25 +11,25 @@ export const projects = [
     title: "Password Generator",
     description: "A little tool to generate random passwords",
     image: "/projects/PasswordGenerator.jpeg",
-    link: "https://cool-strudel-fdd610.netlify.app/",
+    link: "https://password-generator-sf.netlify.app/",
   },
   {
     title: "3D Portfolio",
     description: "A React Three Fiber driven portfolio",
     image: "/projects/3D-Portfolio.jpeg",
-    link: "https://cool-strudel-fdd610.netlify.app/",
+    link: "https://3d-portfolio-sf.netlify.app/",
   },
   {
     title: "Spring Boot App",
     description: "A simple digital learning journal for students",
     image: "/projects/LearningJournal.jpeg",
-    link: "https://cool-strudel-fdd610.netlify.app/",
+    link: "https://learning-journal-sf.netlify.app/",
   },
   {
     title: "Snake Game",
     description: "A basic 2D snake game",
     image: "/projects/LearningJournal.jpeg",
-    link: "https://snake-2d-basic.netlify.app/",
+    link: "https://snake-2d-sf.netlify.app/",
   },
 ];
 

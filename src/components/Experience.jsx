@@ -9,8 +9,8 @@ import { Office } from "./Office";
 import { motion } from "framer-motion-3d";
 import { Avatar } from "./Avatar";
 import { Projects } from "./Projects";
-import * as THREE from "three";
 
+import * as THREE from "three";
 
 import { useFrame, useThree } from "@react-three/fiber";
 import { animate, useMotionValue } from "framer-motion";
@@ -54,8 +54,8 @@ export const Experience = (props) => {
   useFrame((state) => {
     let curSection = Math.floor(data.scroll.current * data.pages);
 
-    if (curSection > 3) {
-      curSection = 3;
+    if (curSection > 5) {
+      curSection = 5;
     }
 
     if (curSection !== section) {
@@ -66,8 +66,10 @@ export const Experience = (props) => {
     state.camera.lookAt(cameraLookAtX.get(), 0, 0);
 
     // const position = new THREE.Vector3();
-    if ( section === 0 ) {
-      characterContainerAboutRef.current.getWorldPosition(characterGroup.current.position);
+    if (section === 0) {
+      characterContainerAboutRef.current.getWorldPosition(
+        characterGroup.current.position
+      );
     }
     // console.log([position.x, position.y, position.z]);
 
@@ -84,9 +86,7 @@ export const Experience = (props) => {
 
       <motion.group
         ref={characterGroup}
-        position={[
-          0.2208597124428327, 0.054, 2.29733495918678 
-        ]}
+        position={[0.2208597124428327, 0.054, 2.29733495918678]}
         rotation={[-0, 1.3519999999999992, -0]}
         scale={[officeScaleRatio, officeScaleRatio, officeScaleRatio]}
         animate={"" + section}
@@ -95,9 +95,9 @@ export const Experience = (props) => {
         }}
         variants={{
           0: {
-            scale: isMobile ? officeScaleRatio * 0.35 : officeScaleRatio * 0.353,
-            // scaleY: officeScaleRatio * 0.353,
-            // scaleZ: officeScaleRatio * 0.353,
+            scale: isMobile
+              ? officeScaleRatio * 0.35
+              : officeScaleRatio * 0.353,
           },
           1: {
             scale: isMobile ? 2.1 : 1.8,
@@ -118,7 +118,25 @@ export const Experience = (props) => {
             rotateZ: 0,
           },
           3: {
-            y: -viewport.height - 12.5,
+            scale: 1.2,
+            x: isMobile ? -1 : 2.5,
+            y: isMobile ? -viewport.height - 13 : -viewport.height - 9.67,
+            z: 0,
+            rotateX: 0,
+            rotateY: isMobile ? Math.PI / 8 : -Math.PI / 2,
+            rotateZ: 0,
+          },
+          4: {
+            scale: 1,
+            x: isMobile ? -1 : -2.1,
+            y: isMobile ? -viewport.height - 13 : -viewport.height - 11.5,
+            z: 0,
+            rotateX: 0,
+            rotateY: isMobile ? Math.PI / 8 : Math.PI / 3,
+            rotateZ: 0,
+          },
+          5: {
+            y: -viewport.height - 22,
             x: isMobile ? 1.3 : 1,
             z: 0,
             rotateX: 0,
@@ -135,9 +153,13 @@ export const Experience = (props) => {
       <mesh>
         <ambientLight intensity={1} />
         <motion.group
-          position={[isMobile ? -0.9 : -0.2 * officeScaleRatio , isMobile ? -viewport.height / 6 : 0 , 2.3]}
+          position={[
+            isMobile ? -0.9 : -0.2 * officeScaleRatio,
+            isMobile ? -viewport.height / 6 : 0,
+            2.3,
+          ]}
           rotation={[0, 0.2, 0]}
-          scale={[officeScaleRatio, officeScaleRatio, officeScaleRatio]} 
+          scale={[officeScaleRatio, officeScaleRatio, officeScaleRatio]}
           animate={{
             y: isMobile ? -viewport.height / 12 : 0,
           }}
@@ -149,7 +171,9 @@ export const Experience = (props) => {
           <group
             ref={characterContainerAboutRef}
             name="AvatarSpot"
-            position={[0.413, 0.054, 0.081]} rotation={[0, 1.152, 0]} scale={0.353}
+            position={[0.413, 0.054, 0.081]}
+            rotation={[0, 1.152, 0]}
+            scale={0.353}
           >
             {/* <Avatar animation={characterAnimation} wireframe={section === 1} /> */}
           </group>
@@ -162,9 +186,32 @@ export const Experience = (props) => {
         rotation={[0, -0.7, 0]}
         scale={1.0}
         animate={{
-          y: section === 1 ? -viewport.height / 2 : (isMobile ? -viewport.height : -1 * officeScaleRatio),
+          y:
+            section === 1
+              ? -viewport.height / 2
+              : isMobile
+              ? -viewport.height
+              : -1 * officeScaleRatio,
           x: 0,
           z: section === 1 ? -8 : -12,
+        }}
+        variants={{
+          0: {
+            y: isMobile ? -viewport.height / 2 : -1 * officeScaleRatio,
+            z: -12,
+          },
+          1: {
+            y: isMobile ? -viewport.height / 2 : -1 * officeScaleRatio,
+            z: -8,
+          },
+          2: {
+            y: isMobile ? -viewport.height / 2 : -1 * officeScaleRatio,
+            z: -12,
+          },
+          3: {
+            y: isMobile ? -viewport.height / 2 : -1 * officeScaleRatio,
+            z: -12,
+          },
         }}
       >
         <directionalLight position={[0, 10, 5]} intensity={0.5} />

@@ -13,14 +13,16 @@ export const ScrollManager = (props) => {
     const lastScroll = useRef(0);
     const isAnimating = useRef(false);
 
+
     data.fill.classList.add("top-0");
     data.fill.classList.add("absolute");
     
 
     useEffect(() => {
         gsap.to(data.el, {
-            duration: 1,
+            duration: section === data.pages - 1 ? 0.8 : 1.2,
             scrollTop: section * data.el.clientHeight,
+            ease: "power2.inOut",
             onStart: () => {
                 isAnimating.current = true;
             },
@@ -30,24 +32,40 @@ export const ScrollManager = (props) => {
         });
     }, [section]); 
 
-    useFrame (() => {
+    useFrame(() => {
+        
         if (isAnimating.current) {
             lastScroll.current = data.scroll.current;
             return;
         }
-
+    
         const curSection = Math.floor(data.scroll.current * data.pages);
-        if (data.scroll.current > lastScroll.current && curSection === 0) {
-            onSectionChange(1);
+        const scrollingDown = data.scroll.current > lastScroll.current;
+        
+        // Scroll-Schwelle - wie weit muss gescrollt werden, um einen Wechsel auszulösen
+        const threshold = 0.01;
+        
+        // Nach unten scrollen - für alle Sektionen
+        if (scrollingDown) {
+            // Einfachere, allgemeine Bedingung
+            if (curSection > section) {
+                onSectionChange(curSection);
+            }
         }
-        if (
-            data.scroll.current < lastScroll.current && 
-            data.scroll.current < 1 / (data.pages - 1)
-        ) {
-            onSectionChange(0);
+        // Nach oben scrollen - für alle Sektionen
+        else {
+            if (section === data.pages - 1 && data.scroll.current < 0.95) {
+                onSectionChange(section - 1);
+            }
+            // Spezifische Bedingungen für jede Sektion beim Hochscrollen
+            if (curSection < section) {
+                onSectionChange(curSection);
+            }
         }
+        
         lastScroll.current = data.scroll.current;
     });
-
+    
     return null;
+
 }
