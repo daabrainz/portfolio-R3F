@@ -301,11 +301,11 @@ const TimelineSection = (props) => {
 
 const timelineData = [
   {
-    title: "Umschulung Fachinformatiker Anwendungsentwicklung",
+    title: "Retraining as an IT specialist in application development",
     company: "Mischok Academy",
     description:
-      "Web-Entwicklung, Daten-Management, Spring-Boot, Projektmanagement",
-    date: "2024 - heute",
+      "Web-Development, Data-Management, Spring-Boot, Project-Management",
+    date: "2024 - today",
     icon: "education", // work, education, etc.
   },
   {
@@ -316,9 +316,9 @@ const timelineData = [
     icon: "work",
   },
   {
-    title: "Kaufmann für Marketingkommunikation",
+    title: "Marketing communications clerk",
     company: "trumedia GmbH",
-    description: "Projektmanagement, Emotional Branding, Marketing",
+    description: "Project-Management, Emotional Branding, Marketing, Targeting",
     date: "2018 - 2019",
     icon: "education",
   },
