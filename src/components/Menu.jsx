@@ -2,6 +2,7 @@ export const Menu = (props) => {
   const { onSectionChange, menuOpened, setMenuOpened } = props;
 
   const isMobile = window.innerWidth < 768;
+  const isVerySmallDevice = window.innerWidth < 375;
 
   return (
     <>
@@ -37,7 +38,7 @@ export const Menu = (props) => {
             <MenuButton label="Skills" onClick={() => onSectionChange(1)} />
             <MenuButton label="Projects" onClick={() => onSectionChange(2)} />
             <MenuButton label="My Life" onClick={() => onSectionChange(3)} />
-            <MenuButton label="Contact" onClick={() => onSectionChange(isMobile ? 5 : 4)} />
+            <MenuButton label="Contact" onClick={() => onSectionChange(isVerySmallDevice ? 6 : 5)} />
         </div>
       </div>
     </>
