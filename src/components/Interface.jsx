@@ -421,7 +421,7 @@ const ContactSection = () => {
 
   return (
     <Section fullHeight={false} mobileTop={true}>
-      <div className="w-full mt-0 md:mt-150">
+      <div className="w-full mt-0">
         <h2 className="text-white text-3xl md:text-5xl font-bold">
           Contact me
         </h2>
