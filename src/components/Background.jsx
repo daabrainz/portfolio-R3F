@@ -24,13 +24,13 @@ export const Background = () => {
     color.current.color = "#0D1B2A"; // Setze die Startfarbe
     tl.current = gsap.timeline({ paused: true });
     tl.current.to(color.current, { color: "#1b2837" });
-    tl.current.to(color.current, { color: "#E5E5E5" });
+    tl.current.to(color.current, { color: "#46515c" });
     tl.current.to(color.current, { color: "#1b2837" });
   }, []);
 
   return (
     <group>
-      <Sphere scale={[30, 30, 30]}>
+      <Sphere scale={[50, 50, 50]}>
         <meshBasicMaterial
           ref={material}
           side={THREE.BackSide}

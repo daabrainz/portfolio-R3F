@@ -18,6 +18,9 @@ function App() {
   const [started, setStarted] = useState(false);
   const [menuOpened, setMenuOpened] = useState(false);
 
+  const isMobile = window.innerWidth < 5768;
+  const totalPages = isMobile ? 6 : 5;
+
   useEffect(() => {
     setMenuOpened(false);
   }, [section]);
@@ -30,7 +33,7 @@ function App() {
     }}>
       <Canvas shadows camera={{ position: [-2, 1, 5], fov: 42}}>
         <color attach="background" args={["#e6e7ff"]} />
-        <ScrollControls pages={6} damping={0.2}>
+        <ScrollControls pages={totalPages} damping={0.2}>
           <ScrollManager section={section} onSectionChange={setSection} />
           <Scroll>
             <Suspense>

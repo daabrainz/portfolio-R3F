@@ -17,6 +17,7 @@ import { animate, useMotionValue } from "framer-motion";
 import { useEffect, useImperativeHandle, useRef, useState } from "react";
 import { framerMotionConfig } from "../config";
 import { Background } from "./Background";
+import { max } from "three/tsl";
 
 export const Experience = (props) => {
   const { menuOpened } = props;
@@ -54,8 +55,9 @@ export const Experience = (props) => {
   useFrame((state) => {
     let curSection = Math.floor(data.scroll.current * data.pages);
 
-    if (curSection > 5) {
-      curSection = 5;
+    const maxSection = isMobile ? 5 : 4;
+    if (curSection > maxSection) {
+      curSection = maxSection;
     }
 
     if (curSection !== section) {
@@ -111,38 +113,38 @@ export const Experience = (props) => {
           2: {
             scale: 0.8,
             x: -1,
-            y: -viewport.height - 5.5,
+            y: -viewport.height - 5,
             z: 0,
             rotateX: 0,
             rotateY: Math.PI / 3,
             rotateZ: 0,
           },
           3: {
-            scale: 1.2,
-            x: isMobile ? -1 : 2.5,
-            y: isMobile ? -viewport.height - 13 : -viewport.height - 9.67,
+            scale: isMobile ? 3 :2,
+            x: isMobile ? -1 : 1,
+            y: isMobile ? -viewport.height - 13 : -viewport.height - 10.5,
             z: 0,
             rotateX: 0,
-            rotateY: isMobile ? Math.PI / 8 : -Math.PI / 2,
+            rotateY: isMobile ? Math.PI / 8 : -Math.PI / 4,
             rotateZ: 0,
           },
           4: {
-            scale: 1,
-            x: isMobile ? -1 : -2.1,
-            y: isMobile ? -viewport.height - 13 : -viewport.height - 11.5,
-            z: 0,
-            rotateX: 0,
-            rotateY: isMobile ? Math.PI / 8 : Math.PI / 3,
-            rotateZ: 0,
-          },
-          5: {
-            y: -viewport.height - 22,
-            x: isMobile ? 1.3 : 1,
+            y: -viewport.height - 18,
+            x: isMobile ? 1.1 : 1,
             z: 0,
             rotateX: 0,
             rotateY: -Math.PI / 3,
             rotateZ: 0,
             scale: 3,
+          },
+          5: {
+            y: -viewport.height - 19.65, // Noch weiter unten für die Kontaktsektion
+            x: isMobile ? 1.2 : 1,      // Wird nur bei Mobile verwendet
+            z: 0,
+            rotateX: 0,
+            rotateY: -Math.PI / 3,
+            rotateZ: 0,
+            scale: 2.5,
           },
         }}
       >
@@ -154,14 +156,14 @@ export const Experience = (props) => {
         <ambientLight intensity={1} />
         <motion.group
           position={[
-            isMobile ? -0.9 : -0.2 * officeScaleRatio,
+            isMobile ? -0.9 : -0.7 * officeScaleRatio,
             isMobile ? -viewport.height / 6 : 0,
             2.3,
           ]}
           rotation={[0, 0.2, 0]}
           scale={[officeScaleRatio, officeScaleRatio, officeScaleRatio]}
           animate={{
-            y: isMobile ? -viewport.height / 12 : 0,
+            y: isMobile ? -viewport.height / 14 : 0,
           }}
           transition={{
             duration: 0.8,
@@ -185,32 +187,29 @@ export const Experience = (props) => {
         position={[0, isMobile ? -viewport.height : -1 * officeScaleRatio, 1.2]}
         rotation={[0, -0.7, 0]}
         scale={1.0}
-        animate={{
-          y:
-            section === 1
-              ? -viewport.height / 2
-              : isMobile
-              ? -viewport.height
-              : -1 * officeScaleRatio,
-          x: 0,
-          z: section === 1 ? -8 : -12,
-        }}
+        animate={"" + section}
         variants={{
           0: {
-            y: isMobile ? -viewport.height / 2 : -1 * officeScaleRatio,
-            z: -12,
+            y: isMobile ? -viewport.height / 2 : -1,
+            z: -8,
           },
           1: {
-            y: isMobile ? -viewport.height / 2 : -1 * officeScaleRatio,
+            y: isMobile ? -viewport.height / 2 : -6, 
             z: -8,
           },
           2: {
-            y: isMobile ? -viewport.height / 2 : -1 * officeScaleRatio,
+            y: isMobile ? -viewport.height / 2 : -13,
+            x: 5,
             z: -12,
           },
           3: {
-            y: isMobile ? -viewport.height / 2 : -1 * officeScaleRatio,
-            z: -12,
+            y: isMobile ? -viewport.height / 2 : -18,
+            x: 2,
+            z: -10,
+          },
+          4: {
+            y: isMobile ? -viewport.height / 2 : -20,
+            z: -5,
           },
         }}
       >
