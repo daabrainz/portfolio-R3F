@@ -17,7 +17,7 @@ import { animate, useMotionValue } from "framer-motion";
 import { useEffect, useImperativeHandle, useRef, useState } from "react";
 import { framerMotionConfig } from "../config";
 import { Background } from "./Background";
-import { max } from "three/tsl";
+
 
 export const Experience = (props) => {
   const { menuOpened } = props;
@@ -129,9 +129,9 @@ export const Experience = (props) => {
             rotateZ: 0,
           },
           4: {
-            scale: 3,
-            x: isMobile ? 1.1 : 1,
-            y: -viewport.height - 16,
+            scale: 2.8,
+            x: isMobile ? 0.8 : 1,
+            y: -viewport.height - 16.5,
             z: 0,
             rotateX: 0,
             rotateY: -Math.PI / 3,

@@ -13,6 +13,9 @@ export function Office(props) {
   const texture = useTexture("/textures/Baked.jpg");
   const textureVsCode = useVideoTexture("textures/vscode.mp4");
 
+  textureVsCode.center.set(0.5, 0.5);
+  textureVsCode.rotation = -Math.PI / 2;
+
   texture.flipY = false;
   texture.encoding = THREE.sRGBEncoding;
 
