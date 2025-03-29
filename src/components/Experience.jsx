@@ -55,7 +55,7 @@ export const Experience = (props) => {
   useFrame((state) => {
     let curSection = Math.floor(data.scroll.current * data.pages);
 
-    const maxSection = isMobile ? 5 : 4;
+    const maxSection = isMobile ? 4 : 4;
     if (curSection > maxSection) {
       curSection = maxSection;
     }
@@ -103,8 +103,8 @@ export const Experience = (props) => {
           },
           1: {
             scale: isMobile ? 2.1 : 1.8,
-            y: isMobile ? -viewport.height - 2 : -viewport.height - 1.6,
             x: isMobile ? 0.6 : 0.9,
+            y: isMobile ? -viewport.height - 2 : -viewport.height - 1.6,
             z: 0,
             rotateX: 0,
             rotateY: isMobile ? -Math.PI / 2 : -0.5,
@@ -129,23 +129,23 @@ export const Experience = (props) => {
             rotateZ: 0,
           },
           4: {
-            y: -viewport.height - 18,
-            x: isMobile ? 1.1 : 1,
-            z: 0,
-            rotateX: 0,
-            rotateY: -Math.PI / 3,
-            rotateZ: 0,
             scale: 3,
-          },
-          5: {
-            y: -viewport.height - 19.65, // Noch weiter unten für die Kontaktsektion
-            x: isMobile ? 1.2 : 1,      // Wird nur bei Mobile verwendet
+            x: isMobile ? 1.1 : 1,
+            y: -viewport.height - 16,
             z: 0,
             rotateX: 0,
             rotateY: -Math.PI / 3,
             rotateZ: 0,
-            scale: 2.5,
           },
+          // 5: {
+          //   y: -viewport.height - 19.65, // Noch weiter unten für die Kontaktsektion
+          //   x: isMobile ? 1.2 : 1,      // Wird nur bei Mobile verwendet
+          //   z: 0,
+          //   rotateX: 0,
+          //   rotateY: -Math.PI / 3,
+          //   rotateZ: 0,
+          //   scale: 2.5,
+          // },
         }}
       >
         <Avatar animation={characterAnimation} wireframe={section === 1} />

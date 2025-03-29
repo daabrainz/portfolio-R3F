@@ -417,16 +417,16 @@ const MyLifeSection = ({ section }) => {
 const ContactSection = () => {
   const [state, handleSubmit] = useForm("xyzedgre");
 
-  const isMobile = window.innerWidth < 768;
+  const isVerySmallDevice = window.innerWidth < 375;
 
   return (
     <Section fullHeight={false} mobileTop={true}>
-      <div className={`${isMobile ? "mt-80" : "mt-200"} w-full`}>
-        <h2 className="text-white text-3xl md:text-5xl font-bold mt-6">
+      <div className="w-full mt-0 md:mt-100">
+        <h2 className="text-white text-3xl md:text-5xl font-bold">
           Contact me
         </h2>
 
-        <div className="bg-white/50 mt-6 p-4 rounded-md w-full max-w-md">
+        <div className={`bg-white/50 mt-6 p-3 ${isVerySmallDevice ? 'p-2' : 'p-4'} rounded-md w-full max-w-md`}>
           {state.succeeded ? (
             <p className="text-center text-lg font-bold">
               Thanks for your message! I will get back to you soon.

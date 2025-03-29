@@ -18,8 +18,9 @@ function App() {
   const [started, setStarted] = useState(false);
   const [menuOpened, setMenuOpened] = useState(false);
 
-  const isMobile = window.innerWidth < 5768;
-  const totalPages = isMobile ? 6 : 5;
+  const isMobile = window.innerWidth < 768;
+  const isVerySmallDevice = window.innerHeight < 680;
+  const totalPages = isVerySmallDevice ? 6 : 5;
 
   useEffect(() => {
     setMenuOpened(false);
