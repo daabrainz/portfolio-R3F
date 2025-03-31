@@ -114,7 +114,6 @@ const AboutSection = (props) => {
       >
         Kontakt
       </motion.button>
-
     </Section>
   );
 };
@@ -277,7 +276,10 @@ const ProjectsSection = () => {
 
   return (
     <Section>
-      <div className="flex w-full h-full gap-8 items-end justify-center mb-30" {...swipeHandlers}>
+      <div
+        className="flex w-full h-full gap-8 items-end justify-center mb-30"
+        {...swipeHandlers}
+      >
         <button
           className="text-gray-100 hover:scale-120 transition-transform text-3xl md:text-5xl font-bold transition-color cursor-pointer"
           onClick={previousProject}
@@ -379,9 +381,9 @@ const AnimatedTimelineElement = ({ data, index }) => {
         contentArrowStyle={{
           borderRight: "7px solid rgba(0, 0, 0, 0.5)",
         }}
-        position={position} // Diese Zeile ist entscheidend!
+        position={position}
         date={data.date}
-        dateClassName="mt-0! font-small text-white"
+        dateClassName="mt-0! text-xs sm:text-sm text-white" // Kleinere Textgröße für Datum
         iconStyle={{
           background: "#4f39f6",
           color: "#fff",
@@ -389,9 +391,13 @@ const AnimatedTimelineElement = ({ data, index }) => {
         }}
         icon={<FontAwesomeIcon icon={getIcon(data.icon)} />}
       >
-        <h3 className="text-xl font-bold mb-3">{data.title}</h3>
-        <h4 className="font-small">{data.company}</h4>
-        <p className="font-light">{data.description}</p>
+        <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2 md:mb-3">
+          {data.title}
+        </h3>
+        <h4 className="text-xs sm:text-sm md:text-base">{data.company}</h4>
+        <p className="text-xs sm:text-sm md:text-base font-light mt-1">
+          {data.description}
+        </p>
       </VerticalTimelineElement>
     </motion.div>
   );
@@ -403,7 +409,7 @@ const MyLifeSection = ({ section }) => {
   return (
     <TimelineSection>
       <motion.h2
-        className="text-gray-100 text-3xl md:text-5xl mb-5 font-bold"
+        className="text-gray-100 text-2xl md:text-3xl lg:text-5xl mb-3 md:mb-5 font-bold"
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
@@ -415,6 +421,7 @@ const MyLifeSection = ({ section }) => {
         animate={false}
         lineColor="#4f39f6"
         layout={isMobile ? "1-column" : "2-columns"}
+        className={isMobile ? "vertical-timeline-custom-line" : ""}
       >
         {timelineData.map((item, index) => (
           <AnimatedTimelineElement key={index} data={item} index={index} />
@@ -432,14 +439,17 @@ const ContactSection = () => {
   return (
     <Section fullHeight={false} mobileTop={true}>
       <div className="w-full mt-0">
-        <h2 className="text-white text-3xl md:text-5xl font-bold">
-          Kontakt
-        </h2>
+        <h2 className="text-white text-3xl md:text-5xl font-bold">Kontakt</h2>
 
-        <div className={`bg-white/50 mt-6 p-10 ${isVerySmallDevice ? 'p-2' : 'p-4'} rounded-2xl w-full max-w-md`}>
+        <div
+          className={`bg-white/50 mt-6 p-10 ${
+            isVerySmallDevice ? "p-2" : "p-4"
+          } rounded-2xl w-full max-w-md`}
+        >
           {state.succeeded ? (
             <p className="text-center text-lg font-bold">
-              Danke für deine Nachricht! <br/> Ich werde mich bald bei dir melden.
+              Danke für deine Nachricht! <br /> Ich werde mich bald bei dir
+              melden.
             </p>
           ) : (
             <form onSubmit={handleSubmit}>

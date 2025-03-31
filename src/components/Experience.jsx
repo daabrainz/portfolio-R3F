@@ -123,7 +123,7 @@ export const Experience = (props) => {
           },
           3: {
             scale: isMobile ? 3 :2,
-            x: isMobile ? -1 : 1,
+            x: isMobile ? -1 : 1.5,
             y: isMobile ? -viewport.height - 13 : -viewport.height - 10.5,
             z: 0,
             rotateX: 0,
@@ -169,7 +169,7 @@ export const Experience = (props) => {
           rotation={[0, 0.2, 0]}
           scale={[officeScaleRatio, officeScaleRatio, officeScaleRatio]}
           animate={{
-            y: isMobile ? -viewport.height / 14 : 0,
+            y: isMobile ? -viewport.height / 10 + 0.2 : 0,
           }}
           transition={{
             duration: 0.8,
