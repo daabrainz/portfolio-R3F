@@ -66,8 +66,8 @@ export const Interface = (props) => {
 
 const AboutSection = (props) => {
   const { setSection, isMobile } = props;
+  const isVerySmallDevice = window.innerWidth < 375;
 
-  const contactSectionIndex = isMobile ? 6 : 5;
 
   return (
     <Section mobileTop>
@@ -97,7 +97,7 @@ const AboutSection = (props) => {
       </motion.p>
 
       <motion.button
-        onClick={() => setSection(contactSectionIndex)}
+        onClick={() => setSection(isVerySmallDevice ? 5 : 4)}
         className={` bg-indigo-600 text-gray-50 py-4 ring-none px-8 rounded-2xl font-bold text-lg mt-4 md:mt-16 hover:scale-110 transition-transform cursor-pointer`}
         initial={{
           opacity: 0,
@@ -291,7 +291,7 @@ const ProjectsSection = () => {
           Projekte
         </h2>
         <button
-          className="text-gray-50 hover:scale-120 transition-transform font-bold text-2xl md:text-5xl transition-color cursor-pointer"
+          className="text-gray-50 hover:scale-120 transition-transform font-bold text-3xl md:text-5xl transition-color cursor-pointer"
           onClick={nextProject}
         >
           <FontAwesomeIcon icon={faArrowRight} />
