@@ -20,7 +20,7 @@ import { Background } from "./Background";
 
 
 export const Experience = (props) => {
-  const { menuOpened } = props;
+  const { menuOpened, cursorFollow } = props;
   const { viewport } = useThree();
   const data = useScroll();
 
@@ -29,12 +29,14 @@ export const Experience = (props) => {
   const officeScaleRatio = Math.max(0.5, Math.min(1.5 * responsiveRatio, 1.5));
 
   const [section, setSection] = useState();
+  
 
   const cameraPositionX = useMotionValue();
   const cameraLookAtX = useMotionValue();
   const characterContainerAboutRef = useRef();
   const [characterAnimation, setCharacterAnimation] = useState("Typing");
   const characterGroup = useRef();
+
 
   useEffect(() => {
     animate(cameraPositionX, menuOpened ? -2 : -2, {
@@ -148,7 +150,11 @@ export const Experience = (props) => {
           // },
         }}
       >
-        <Avatar animation={characterAnimation} wireframe={section === 1} />
+        <Avatar 
+        animation={characterAnimation} 
+        wireframe={section === 1}
+        // externalCursorFollow={cursorFollow} 
+        />
       </motion.group>
 
       {/* Position Office & Avatar */}

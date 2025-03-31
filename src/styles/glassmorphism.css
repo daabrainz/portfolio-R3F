@@ -1,0 +1,62 @@
+.glass-card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    overflow: hidden;
+    padding: 1.5rem;
+    box-shadow: 
+      0 8px 32px rgba(31, 38, 135, 0.2),
+      0 1px 2px rgba(255, 255, 255, 0.1) inset;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    transition: all 0.4s ease;
+  }
+  
+  .glass-card:hover {
+    transform: translateY(-5px) rotateX(2deg) rotateY(1deg);
+    box-shadow: 
+      0 15px 30px rgba(31, 38, 135, 0.3),
+      0 1px 2px rgba(255, 255, 255, 0.1) inset;
+  }
+  
+  .card-content {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .glassmorphism-bg {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  
+  .glass-progress {
+    background: linear-gradient(
+      90deg,
+      rgba(79, 57, 246, 0.8) 0%,
+      rgba(102, 126, 234, 0.9) 100%
+    );
+    box-shadow: 0 0 10px rgba(79, 57, 246, 0.5);
+  }
+  
+  .glass-shine {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+      circle at center,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0) 70%
+    );
+    pointer-events: none;
+    transform: rotate(45deg);
+    transition: transform 0.5s;
+  }
+  
+  .glass-card:hover .glass-shine {
+    transform: rotate(45deg) translate(5%, 5%);
+  }

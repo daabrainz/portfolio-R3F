@@ -15,6 +15,7 @@ import {
   VerticalTimelineElement,
 } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
+import { useSwipeable } from "react-swipeable";
 
 const Section = (props) => {
   const { children, mobileTop, fullHeight = true } = props;
@@ -71,7 +72,7 @@ const AboutSection = (props) => {
   return (
     <Section mobileTop>
       <h1 className=" text-gray-50 text-3xl md:text-6xl font-extrabold leading-snug mt-8 md:mt-0">
-        Hi, i am
+        Hi, ich bin
         <br />
         <span className="bg-gray-50 text-gray-900 px-3 py-1 italic">
           Samuel Feindt
@@ -92,12 +93,12 @@ const AboutSection = (props) => {
           delay: 1.5,
         }}
       >
-        aspiring UI/UX-Designer, Game-Developer <br />& 3D-Enthusiast.
+        angehender Fullstack-Entwickler, <br />& 3D-Enthusiast.
       </motion.p>
 
       <motion.button
         onClick={() => setSection(contactSectionIndex)}
-        className={` bg-indigo-600 text-gray-50 py-4 ring-none px-8 rounded-2xl font-bold text-lg mt-4 md:mt-16 hover:scale-110 transition-transform`}
+        className={` bg-indigo-600 text-gray-50 py-4 ring-none px-8 rounded-2xl font-bold text-lg mt-4 md:mt-16 hover:scale-110 transition-transform cursor-pointer`}
         initial={{
           opacity: 0,
           y: 20,
@@ -113,6 +114,7 @@ const AboutSection = (props) => {
       >
         Kontakt
       </motion.button>
+
     </Section>
   );
 };
@@ -204,7 +206,7 @@ const SkillSection = () => {
         </div>
         <div>
           <h2 className="text-3xl md:text-5xl font-bold mt-8 text-gray-50">
-            Languages
+            Sprachen
           </h2>
           <div className="mt-6 space-y-4">
             {languages.map((lng, index) => (
@@ -265,11 +267,19 @@ const ProjectsSection = () => {
     setCurrentProject((currentProject - 1 + projects.length) % projects.length);
   };
 
+  const swipeHandlers = useSwipeable({
+    onSwipedLeft: nextProject,
+    onSwipedRight: previousProject,
+    preventDefaultTouchmoveEvent: true,
+    trackMouse: true,
+    trackTouch: true,
+  });
+
   return (
     <Section>
-      <div className="flex w-full h-full gap-8 items-end justify-center mb-30">
+      <div className="flex w-full h-full gap-8 items-end justify-center mb-30" {...swipeHandlers}>
         <button
-          className="text-gray-100 hover:scale-120 transition-transform text-3xl md:text-5xl font-bold transition-color"
+          className="text-gray-100 hover:scale-120 transition-transform text-3xl md:text-5xl font-bold transition-color cursor-pointer"
           onClick={previousProject}
         >
           <FontAwesomeIcon icon={faArrowLeft} />
@@ -279,7 +289,7 @@ const ProjectsSection = () => {
           Projekte
         </h2>
         <button
-          className="text-gray-50 hover:scale-120 transition-transform font-bold text-3xl md:text-5xl transition-color"
+          className="text-gray-50 hover:scale-120 transition-transform font-bold text-2xl md:text-5xl transition-color cursor-pointer"
           onClick={nextProject}
         >
           <FontAwesomeIcon icon={faArrowRight} />
@@ -310,7 +320,7 @@ const timelineData = [
   },
   {
     title: "Musikproduzent",
-    company: "Freelance",
+    company: "Freischaffender Künstler",
     description: "Sounddesign, Mixing, Mastering",
     date: "2019 - 2024",
     icon: "work",
@@ -429,7 +439,7 @@ const ContactSection = () => {
         <div className={`bg-white/50 mt-6 p-10 ${isVerySmallDevice ? 'p-2' : 'p-4'} rounded-2xl w-full max-w-md`}>
           {state.succeeded ? (
             <p className="text-center text-lg font-bold">
-              Thanks for your message! I will get back to you soon.
+              Danke für deine Nachricht! <br/> Ich werde mich bald bei dir melden.
             </p>
           ) : (
             <form onSubmit={handleSubmit}>
@@ -466,7 +476,7 @@ const ContactSection = () => {
                 for="email"
                 className="font-medium text-gray-900 block mb-1 mt-8"
               >
-                Message
+                Nachricht
               </label>
               <textarea
                 name="message"
@@ -479,9 +489,9 @@ const ContactSection = () => {
               />
               <button
                 disabled={state.submitting}
-                className="bg-indigo-600 text-white py-4 px-8 rounded-2xl font-bold text-lg mt-8 shadow-2xs hover:scale-110 transition-transform"
+                className="bg-indigo-600 text-white py-4 px-8 rounded-2xl font-bold text-lg mt-8 shadow-2xs hover:scale-110 transition-transform cursor-pointer"
               >
-                Submit
+                Senden
               </button>
             </form>
           )}

@@ -12,12 +12,15 @@ import * as THREE from "three";
 
 export function Avatar(props) {
   
-  const { animation, wireframe } = props;
-  const { headFollow, cursorFollow} = useControls({
+  const { animation, wireframe, externalCursorFollow } = props;
+  const { headFollow} = useControls({
     headFollow: false,
-    cursorFollow: false,
     wireframe: false,
   });
+
+  const cursorFollow = externalCursorFollow !== undefined ? 
+    externalCursorFollow : 
+    false; 
 
   const group = useRef();
   const { scene } = useGLTF("/models/model.glb");
@@ -37,11 +40,11 @@ export function Avatar(props) {
 
   useFrame((state) => {
     if (headFollow) {
-      group.current.getObjectByName("Head").lookAt(state.camera.position);
+      group.current.getObjectByName("Spine2").lookAt(state.camera.position);
     }
     if (cursorFollow) {
       const target = new THREE.Vector3(state.mouse.x, state.mouse.y, 1);
-      group.current.getObjectByName("Spine2").lookAt(target);
+      group.current.getObjectByName("Head").lookAt(target);
     }
   });
 

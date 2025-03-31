@@ -10,7 +10,7 @@ export const Menu = (props) => {
         onClick={() => {
           setMenuOpened(!menuOpened);
         }}
-        className="z-20 fixed top-4 right-4 md:top-12 md:right-12 p-3 bg-indigo-600 w-11 h-11 rounded-md"
+        className="z-20 fixed top-4 right-4 md:top-12 md:right-12 p-3 bg-indigo-600 w-11 h-11 rounded-md cursor-pointer hover:scale-110"
       >
         <div
           className={`h-0.5 bg-white rounded-md w-full transition-all ${
