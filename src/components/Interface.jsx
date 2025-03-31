@@ -70,15 +70,15 @@ const AboutSection = (props) => {
 
   return (
     <Section mobileTop>
-      <h1 className=" text-white text-4xl md:text-6xl font-extrabold leading-snug mt-8 md:mt-0">
+      <h1 className=" text-gray-50 text-3xl md:text-6xl font-extrabold leading-snug mt-8 md:mt-0">
         Hi, i am
         <br />
-        <span className="bg-white text-gray-900 px-2 italic">
+        <span className="bg-gray-50 text-gray-900 px-3 py-1 italic">
           Samuel Feindt
         </span>
       </h1>
       <motion.p
-        className="text-lg text-gray-100 mt-4"
+        className="text-lg text-gray-50 mt-4"
         initial={{
           opacity: 0,
           y: 25,
@@ -97,7 +97,7 @@ const AboutSection = (props) => {
 
       <motion.button
         onClick={() => setSection(contactSectionIndex)}
-        className={`bg-indigo-600 text-white py-4 px-8 rounded-lg font-bold text-lg mt-4 md:mt-16 hover:scale-110 transition-transform`}
+        className={` bg-indigo-600 text-gray-50 py-4 ring-none px-8 rounded-2xl font-bold text-lg mt-4 md:mt-16 hover:scale-110 transition-transform`}
         initial={{
           opacity: 0,
           y: 20,
@@ -111,7 +111,7 @@ const AboutSection = (props) => {
           delay: 1.8,
         }}
       >
-        Contact me
+        Kontakt
       </motion.button>
     </Section>
   );
@@ -146,11 +146,11 @@ const skills = [
 
 const languages = [
   {
-    title: "🇩🇪 German",
+    title: "🇩🇪 Deutsch",
     level: 100,
   },
   {
-    title: "🇬🇧 English",
+    title: "🇬🇧 Englisch",
     level: 70,
   },
 ];
@@ -159,12 +159,12 @@ const SkillSection = () => {
   return (
     <Section>
       <motion.div whileInView={"visible"} className="w-full">
-        <h2 className="text-3xl md:text-5xl font-bold text-gray-100">Skills</h2>
+        <h2 className="text-3xl md:text-5xl font-bold text-gray-50">Skills</h2>
         <div className="mt-6 space-y-4">
           {skills.map((skills, index) => (
             <div className="w-full md:w-64" key={index}>
               <motion.h3
-                className=" text-lg md:text-xl font-bold text-gray-100"
+                className=" text-lg md:text-xl font-bold text-gray-50"
                 initial={{
                   opacity: 0,
                 }}
@@ -180,7 +180,7 @@ const SkillSection = () => {
               >
                 {skills.title}
               </motion.h3>
-              <div className="h-2 w-full bg-gray-200 rounded-full mt-2">
+              <div className="h-2 w-full bg-gray-100 rounded-full mt-2">
                 <motion.div
                   className="h-full bg-indigo-500 rounded-full"
                   style={{ width: `${skills.level}%` }}
@@ -203,14 +203,14 @@ const SkillSection = () => {
           ))}
         </div>
         <div>
-          <h2 className="text-3xl md:text-5xl font-bold mt-8 text-gray-100">
+          <h2 className="text-3xl md:text-5xl font-bold mt-8 text-gray-50">
             Languages
           </h2>
           <div className="mt-6 space-y-4">
             {languages.map((lng, index) => (
               <div className="w-full md:w-64" key={index}>
                 <motion.h3
-                  className="text-lg md:text-xl font-bold text-gray-100"
+                  className="text-lg md:text-xl font-bold text-gray-50"
                   initial={{
                     opacity: 0,
                   }}
@@ -226,7 +226,7 @@ const SkillSection = () => {
                 >
                   {lng.title}
                 </motion.h3>
-                <div className="h-2 w-full bg-gray-200 rounded-full mt-2">
+                <div className="h-2 w-full bg-gray-100 rounded-full mt-2">
                   <motion.div
                     className="h-full bg-indigo-500 rounded-full"
                     style={{ width: `${lng.level}%` }}
@@ -269,17 +269,17 @@ const ProjectsSection = () => {
     <Section>
       <div className="flex w-full h-full gap-8 items-end justify-center mb-30">
         <button
-          className="text-gray-100 hover:scale-120 transition-transform text-3xl font-bold transition-color"
+          className="text-gray-100 hover:scale-120 transition-transform text-3xl md:text-5xl font-bold transition-color"
           onClick={previousProject}
         >
           <FontAwesomeIcon icon={faArrowLeft} />
         </button>
 
-        <h2 className=" text-gray-100 text-3xl md:text-5xl font-bold">
-          Projects
+        <h2 className=" text-gray-50 text-3xl md:text-5xl font-bold">
+          Projekte
         </h2>
         <button
-          className="text-gray-100 hover:scale-120 transition-transform font-bold text-3xl transition-color"
+          className="text-gray-50 hover:scale-120 transition-transform font-bold text-3xl md:text-5xl transition-color"
           onClick={nextProject}
         >
           <FontAwesomeIcon icon={faArrowRight} />
@@ -301,24 +301,24 @@ const TimelineSection = (props) => {
 
 const timelineData = [
   {
-    title: "Retraining as an IT specialist in application development",
+    title: "Umschulung zum Fachinformatiker für Anwendungsentwicklung",
     company: "Mischok Academy",
     description:
-      "Web-Development, Data-Management, Spring-Boot, Project-Management",
-    date: "2024 - today",
+      "Web-Entwicklung, Daten-Management, Spring-Boot, Projekt-Management",
+    date: "2024 - heute",
     icon: "education", // work, education, etc.
   },
   {
-    title: "Music Producer",
+    title: "Musikproduzent",
     company: "Freelance",
     description: "Sounddesign, Mixing, Mastering",
     date: "2019 - 2024",
     icon: "work",
   },
   {
-    title: "Marketing communications clerk",
+    title: "Ausbildung zum Kaufmann für Marketingkommunikation",
     company: "trumedia GmbH",
-    description: "Project-Management, Emotional Branding, Marketing, Targeting",
+    description: "Projekt-Management, Emotional Branding, Marketing",
     date: "2018 - 2019",
     icon: "education",
   },
@@ -367,11 +367,11 @@ const AnimatedTimelineElement = ({ data, index }) => {
           marginBottom: "10px",
         }}
         contentArrowStyle={{
-          borderRight: "7px solid rgba(28, 34, 40, 0.9)",
+          borderRight: "7px solid rgba(0, 0, 0, 0.5)",
         }}
         position={position} // Diese Zeile ist entscheidend!
         date={data.date}
-        dateClassName="mt-0! font-medium text-white"
+        dateClassName="mt-0! font-small text-white"
         iconStyle={{
           background: "#4f39f6",
           color: "#fff",
@@ -380,8 +380,8 @@ const AnimatedTimelineElement = ({ data, index }) => {
         icon={<FontAwesomeIcon icon={getIcon(data.icon)} />}
       >
         <h3 className="text-xl font-bold mb-3">{data.title}</h3>
-        <h4 className="font-medium">{data.company}</h4>
-        <p>{data.description}</p>
+        <h4 className="font-small">{data.company}</h4>
+        <p className="font-light">{data.description}</p>
       </VerticalTimelineElement>
     </motion.div>
   );
@@ -398,7 +398,7 @@ const MyLifeSection = ({ section }) => {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        Work & Education
+        Erfahrung
       </motion.h2>
 
       <VerticalTimeline
@@ -423,10 +423,10 @@ const ContactSection = () => {
     <Section fullHeight={false} mobileTop={true}>
       <div className="w-full mt-0">
         <h2 className="text-white text-3xl md:text-5xl font-bold">
-          Contact me
+          Kontakt
         </h2>
 
-        <div className={`bg-white/50 mt-6 p-3 ${isVerySmallDevice ? 'p-2' : 'p-4'} rounded-md w-full max-w-md`}>
+        <div className={`bg-white/50 mt-6 p-10 ${isVerySmallDevice ? 'p-2' : 'p-4'} rounded-2xl w-full max-w-md`}>
           {state.succeeded ? (
             <p className="text-center text-lg font-bold">
               Thanks for your message! I will get back to you soon.
@@ -443,7 +443,7 @@ const ContactSection = () => {
                 type="text"
                 name="name"
                 id="name"
-                className="bg-gray-100  block w-full rounded-md text gray-900 p-2 mt-1"
+                className="bg-gray-100  block w-full rounded-2xl text gray-900  p-3 mt-1"
               />
               <label
                 for="email"
@@ -455,7 +455,7 @@ const ContactSection = () => {
                 type="email"
                 name="email"
                 id="email"
-                className="bg-gray-100 block w-full rounded-md border-0 text-gray-900 p-2"
+                className="bg-gray-100 block w-full rounded-2xl border-0 text-gray-900 p-3"
               />
               <ValidationError
                 prefix="Message"
@@ -471,7 +471,7 @@ const ContactSection = () => {
               <textarea
                 name="message"
                 id="message"
-                className="bg-gray-100 h-32 block w-full rounded-md border-none text-gray-900 p-2 resize-none"
+                className="bg-gray-100 h-32 block w-full rounded-2xl border-none text-gray-900 p-3 resize-none"
               />
               <ValidationError
                 className="mt-10 text-red-400"
@@ -479,7 +479,7 @@ const ContactSection = () => {
               />
               <button
                 disabled={state.submitting}
-                className="bg-indigo-600 text-white py-4 px-8 rounded-lg font-bold text-lg mt-8 hover:scale-110 transition-transform"
+                className="bg-indigo-600 text-white py-4 px-8 rounded-2xl font-bold text-lg mt-8 shadow-2xs hover:scale-110 transition-transform"
               >
                 Submit
               </button>

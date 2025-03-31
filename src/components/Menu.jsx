@@ -34,11 +34,11 @@ export const Menu = (props) => {
         }`}
       >
         <div className="flex-1 flex items-start justify-center flex-col gap-6 p-8">
-            <MenuButton label="About me" onClick={() => onSectionChange(0)} />
+            <MenuButton label="Über mich" onClick={() => onSectionChange(0)} />
             <MenuButton label="Skills" onClick={() => onSectionChange(1)} />
-            <MenuButton label="Projects" onClick={() => onSectionChange(2)} />
-            <MenuButton label="Work & Education" onClick={() => onSectionChange(3)} />
-            <MenuButton label="Contact" onClick={() => onSectionChange(isVerySmallDevice ? 5 : 4)} />
+            <MenuButton label="Projekte" onClick={() => onSectionChange(2)} />
+            <MenuButton label="Erfahrung" onClick={() => onSectionChange(3)} />
+            <MenuButton label="Kontakt" onClick={() => onSectionChange(isVerySmallDevice ? 5 : 4)} />
         </div>
       </div>
     </>

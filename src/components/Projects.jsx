@@ -8,7 +8,7 @@ import { MeshBasicMaterial, PlaneGeometry } from "three";
 
 export const projects = [
   {
-    title: "Password Generator",
+    title: "PW-Generator",
     description: "A little tool to generate random passwords",
     image: "/projects/PasswordGenerator.jpeg",
     link: "https://password-generator-sf.netlify.app/",
@@ -62,17 +62,18 @@ const Project = (props) => {
       />
       <Text
         maxWidth={2}
-        anchorX={"righ"}
-        anchorY={"top"}
-        fontSize={0.2}
-        position={[-0.9, -0.4, 0.1]}
+        anchorX={"center"}
+        anchorY={"middle"}
+        fontSize={0.15}
+        position={[0, -0.6, 0.01]}
+        font="/fonts/Unbounded-VariableFont_wght.ttf"
       >
         {project.title.toUpperCase()}
       </Text>
       <Text
         maxWidth={2}
-        anchorX={"left"}
-        anchorY={"top"}
+        anchorX={"center"}
+        anchorY={"middle"}
         fontSize={0.1}
         position={[-1, -0.6, 0]}>
       </Text>
