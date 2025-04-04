@@ -33,7 +33,7 @@ export const Menu = (props) => {
           menuOpened ? "w-full md:w-80" : "w-0"
         }`}
       >
-        <div className="flex-1 flex items-start justify-center flex-col gap-6 p-8">
+        <div className="flex-1 flex items-start justify-center flex-col gap-6 p-8 cursor-pointer">
             <MenuButton label="Über mich" onClick={() => onSectionChange(0)} />
             <MenuButton label="Skills" onClick={() => onSectionChange(1)} />
             <MenuButton label="Projekte" onClick={() => onSectionChange(2)} />

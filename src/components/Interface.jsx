@@ -286,7 +286,7 @@ const ProjectsSection = () => {
         >
           <FontAwesomeIcon icon={faArrowLeft} />
         </button>
-
+      
         <h2 className=" text-gray-50 text-3xl md:text-5xl font-bold">
           Projekte
         </h2>
