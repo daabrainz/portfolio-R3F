@@ -147,7 +147,7 @@ const BackgroundMusic = () => {
   };
 
   return (
-    <div className="fixed bottom-2 right-2 z-50 flex items-center gap-2 bg-black/30 backdrop-blur-sm px-3 py-2 rounded-full">
+    <div className="fixed bottom-2 right-5 z-50 flex items-center gap-2 bg-black/30 backdrop-blur-sm px-3 py-2 rounded-full">
       <motion.div
         className="p-2 rounded-full cursor-pointer hover:bg-indigo-600/80 transition-colors"
         onClick={togglePlay}
