@@ -4,7 +4,6 @@ import { animate, useMotionValue } from "framer-motion";
 import { motion } from "framer-motion-3d";
 import { atom, useAtom } from "jotai";
 import { useEffect, useRef, useState } from "react";
-import { MeshBasicMaterial, PlaneGeometry } from "three";
 
 export const projects = [
   {
@@ -16,19 +15,19 @@ export const projects = [
   {
     title: "3D Portfolio",
     description: "A React Three Fiber driven portfolio",
-    image: "/projects/3D-Portfolio.jpeg",
+    image: "/projects/portfolio.jpeg",
     link: "https://3d-portfolio-sf.netlify.app/",
   },
-  {
-    title: "Spring Boot App",
-    description: "A simple digital learning journal for students",
-    image: "/projects/LearningJournal.jpeg",
-    link: "https://learning-journal-sf.netlify.app/",
-  },
+  // {
+  //   title: "Spring Boot App",
+  //   description: "A simple digital learning journal for students",
+  //   image: "/projects/LearningJournal.jpeg",
+  //   link: "https://learning-journal-sf.netlify.app/",
+  // },
   {
     title: "Snake Game",
     description: "A basic 2D snake game",
-    image: "/projects/LearningJournal.jpeg",
+    image: "/projects/snake.jpeg",
     link: "https://snake-2d-sf.netlify.app/",
   },
 ];
