@@ -17,6 +17,8 @@ const BackgroundMusic = () => {
   const [audioLoaded, setAudioLoaded] = useState(false);
   const audioRef = useRef(null);
 
+  const isMobile = window.innerWidth <= 768;
+
   // 1. Überwache MoodScreen-Änderungen
   useEffect(() => {
     const selectedMood = localStorage.getItem("selectedMood");
@@ -99,16 +101,10 @@ const BackgroundMusic = () => {
     }
   }, [isPlaying]);
 
-  // Stummschaltungslogik
-  useEffect(() => {
-    if (!audioRef.current) return;
-    audioRef.current.muted = isMuted || volume === 0;
-  }, [isMuted, volume]);
-
   //Volume-Änderungslogik mit automatische Stummschaltung
   useEffect(() => {
     if (!audioRef.current) return;
-    
+
     audioRef.current.volume = volume;
 
     if ((volume === 0) & !isMuted) {
@@ -128,23 +124,27 @@ const BackgroundMusic = () => {
     setIsPlaying(!isPlaying);
   };
 
+  // Stummschaltungs-Logik
   const toggleMute = () => {
     if (volume > 0) {
-        setIsMuted(!isMuted);
+      setIsMuted(!isMuted);
     } else {
-        if (isMuted) {
-            setVolume(0.3); // Setze die Lautstärke zurück, wenn das Audio stummgeschaltet wird
-            setIsMuted(false);
-
-        }
+      if (isMuted) {
+        setVolume(0.3);
+        setIsMuted(false);
+      }
     }
   };
+
+  useEffect(() => {
+    if (!audioRef.current) return;
+    audioRef.current.muted = isMuted || volume === 0;
+  }, [isMuted, volume]);
 
   const handleVolumeChange = (e) => {
     const newVolume = parseFloat(e.target.value);
     setVolume(newVolume);
   };
-
 
   return (
     <div className="fixed bottom-5 right-5 z-50 flex items-center gap-2 bg-black/30 backdrop-blur-sm px-3 py-2 rounded-full">
@@ -170,17 +170,19 @@ const BackgroundMusic = () => {
         </motion.div>
 
         {/* Permanenter Volume-Slider */}
-        <div className="w-30 mb-1">
-          <input
-            type="range"
-            min="0"
-            max="1"
-            step="0.01"
-            value={volume}
-            onChange={handleVolumeChange}
-            className="w-full cursor-pointer accent-indigo-500 h-1.5"
-          />
-        </div>
+        {!isMobile && (
+          <div className="w-30 mb-1">
+            <input
+              type="range"
+              min="0"
+              max="1"
+              step="0.01"
+              value={volume}
+              onChange={handleVolumeChange}
+              className="w-full cursor-pointer accent-indigo-500 h-1.5"
+            />
+          </div>
+        )}
       </div>
 
       <audio
