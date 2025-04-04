@@ -11,8 +11,8 @@ import { framerMotionConfig } from "./config";
 import { Provider } from "jotai";
 import { LoadingScreen } from "./components/LoadingScreen";
 import BackgroundMusic from "./components/BackgroundMusic";
-import Background from "three/src/renderers/common/Background.js";
 import MoodScreen from "./components/MoodScreen";
+import AudioPreloader from "./components/AudioPreloader";
 
 function App() {
   const [section, setSection] = useState(0);
@@ -38,10 +38,15 @@ function App() {
 
   return (
     <>
+      {/* Audio wird im Hintergrund vorgeladen */}
+      <AudioPreloader />
+      
+      {/* Mood-Auswahl */}
       <MoodScreen show={showMoodScreen} onMoodSelected={handleMoodSelect} />
 
       {!showMoodScreen && (
         <>
+        {/* Verbesserter Loading-Screen */}
         <LoadingScreen started={started} setStarted={setStarted} />
         <MotionConfig
           transition={{
@@ -73,7 +78,8 @@ function App() {
             menuOpened={menuOpened}
             setMenuOpened={setMenuOpened}
           />
-          {started && <BackgroundMusic />}
+          {/* Musik mit vorgegebener Stimmung starten */}
+          {started && <BackgroundMusic initialMusicType={selectedMood} />}
         </MotionConfig>
         <Leva hidden />
         </>
