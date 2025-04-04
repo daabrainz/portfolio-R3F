@@ -2,7 +2,6 @@ import { create } from "zustand";
 
 // Zentraler Store für alle Ladefortschritte
 export const useLoadingStore = create((set, get) => ({
-  // Fortschrittsstatus
   assetsProgress: 0,
   audioProgress: 0,
   audioLoaded: false,

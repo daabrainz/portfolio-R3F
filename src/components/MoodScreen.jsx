@@ -27,6 +27,7 @@ const MoodScreen = ({show, onMoodSelected}) => {
         <h2 className="text-center text-4xl md:text-5xl font-bold text-gray-50 mb-6">
           Wähle deine Mood:
         </h2>
+        <p className="text-white text-center">Hintergrund-Musik ändert sich je nach deiner Wahl 😊</p>
         <div className="flex flex-col items-center justify-center">
           <button 
           onClick={() => selectMood("energetic")}

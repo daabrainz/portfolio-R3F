@@ -18,7 +18,6 @@ const AudioPreloader = () => {
             // Erfolgsevent: Audio ist vollständig geladen
             audio.addEventListener("canplaythrough", () => {
               loadedCount++;
-              // Fortschritt aktualisieren (0-100%)
               setAudioProgress((loadedCount / musicTypes.length) * 100);
               console.log(`Audio ${type} geladen (${loadedCount}/${musicTypes.length})`);
               resolve();
@@ -34,7 +33,7 @@ const AudioPreloader = () => {
             }, { once: true });
             
             // Audio-Datei laden starten
-            audio.preload = "auto";
+
             audio.src = `/audio/background-music-${type}.mp3`;
             audio.load();
           });
@@ -44,7 +43,6 @@ const AudioPreloader = () => {
       } catch (error) {
         console.error("Audio-Vorladung teilweise fehlgeschlagen:", error);
       } finally {
-        // In jedem Fall als geladen markieren, damit die App weitergehen kann
         setAudioLoaded(true);
       }
     };

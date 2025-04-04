@@ -38,15 +38,15 @@ function App() {
 
   return (
     <>
-      {/* Audio wird im Hintergrund vorgeladen */}
-      <AudioPreloader />
       
       {/* Mood-Auswahl */}
       <MoodScreen show={showMoodScreen} onMoodSelected={handleMoodSelect} />
 
       {!showMoodScreen && (
         <>
-        {/* Verbesserter Loading-Screen */}
+        {/* Audio wird im Hintergrund vorgeladen */}
+        <AudioPreloader />
+
         <LoadingScreen started={started} setStarted={setStarted} />
         <MotionConfig
           transition={{
