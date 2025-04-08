@@ -436,6 +436,7 @@ const ContactSection = () => {
 
   const isVerySmallDevice = window.innerWidth < 375;
 
+
   return (
     <Section fullHeight={false} mobileTop={true}>
       <div className="w-full mt-0">
@@ -464,6 +465,7 @@ const ContactSection = () => {
                 name="name"
                 id="name"
                 className="bg-gray-100  block w-full rounded-2xl text gray-900  p-3 mt-1"
+                required
               />
               <label
                 for="email"
@@ -476,6 +478,7 @@ const ContactSection = () => {
                 name="email"
                 id="email"
                 className="bg-gray-100 block w-full rounded-2xl border-0 text-gray-900 p-3"
+                required
               />
               <ValidationError
                 prefix="Message"
@@ -492,6 +495,7 @@ const ContactSection = () => {
                 name="message"
                 id="message"
                 className="bg-gray-100 h-32 block w-full rounded-2xl border-none text-gray-900 p-3 resize-none"
+                required
               />
               <ValidationError
                 className="mt-10 text-red-400"
@@ -501,7 +505,7 @@ const ContactSection = () => {
                 disabled={state.submitting}
                 className="bg-indigo-600 text-white py-4 px-8 rounded-2xl font-bold text-lg mt-8 shadow-2xs hover:scale-110 transition-transform cursor-pointer"
               >
-                Senden
+                {state.submitting ? "Wird gesendet..." : "Senden"}
               </button>
             </form>
           )}

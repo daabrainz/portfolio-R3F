@@ -18,12 +18,12 @@ export const projects = [
     image: "/projects/portfolio.jpeg",
     link: "https://3d-portfolio-sf.netlify.app/",
   },
-  // {
-  //   title: "Spring Boot App",
-  //   description: "A simple digital learning journal for students",
-  //   image: "/projects/LearningJournal.jpeg",
-  //   link: "https://learning-journal-sf.netlify.app/",
-  // },
+  {
+    title: "Spring Boot App",
+    description: "A simple digital learning journal for students",
+    image: "/projects/LearningJournal.jpeg",
+    link: "https://github.com/daabrainz/learningjournal",
+  },
   {
     title: "Snake Game",
     description: "A basic 2D snake game",
